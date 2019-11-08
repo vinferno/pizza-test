@@ -5,9 +5,10 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { SplashComponent } from './view/splash/splash.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers} from '../store/reducers';
+import { ProductsComponent } from './feature/products/products.component';
 
 @NgModule({
-  declarations: [SplashComponent],
+  declarations: [SplashComponent, ProductsComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
