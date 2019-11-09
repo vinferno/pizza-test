@@ -1,5 +1,4 @@
 import {Action} from '@ngrx/store';
-import { Actions } from '@ngrx/store-devtools/src/reducer';
 interface Topping {
   id?: number;
   name?: string;
@@ -17,21 +16,18 @@ export const LOAD_PIZZAS =  '[Products] Load Pizzas';
 export const LOAD_PIZZAS_FAIL =  '[Products] Load Pizzas';
 export const LOAD_PIZZAS_SUCCESS =  '[Products] Load Pizzas';
 
-// @ts-ignore
-export class LoadPizzas implements Actions {
+export class LoadPizzas implements Action {
   readonly type = LOAD_PIZZAS;
 }
 
-// @ts-ignore
-export class LoadPizzasFail implements Actions {
+export class LoadPizzasFail implements Action {
   readonly type = LOAD_PIZZAS_FAIL;
   constructor(public payload: any) {}
 }
 
-// @ts-ignore
-export class LoadPizzasSucces implements Actions {
+export class LoadPizzasSuccess implements Action {
   readonly type = LOAD_PIZZAS_SUCCESS;
   constructor(public payload: Pizza[]) {}
 }
 
-export type PizzasActions = LoadPizzas | LoadPizzasFail | LoadPizzasSucces;
+export type PizzasActions = LoadPizzas | LoadPizzasFail | LoadPizzasSuccess;

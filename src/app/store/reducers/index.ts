@@ -1,11 +1,9 @@
 import * as fromPizzas from './pizzas.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-import { from } from 'rxjs';
 
 export interface ProductsState {
   pizzas: fromPizzas.PizzaState;
 }
-
 
 export const reducers: ActionReducerMap<ProductsState> = {
   pizzas: fromPizzas.reducer,

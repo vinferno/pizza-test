@@ -1,8 +1,9 @@
-import { Pizza, PizzasActions } from '../actions/pizzas.actions';
+
 import * as fromPizzas from '../actions/pizzas.actions';
 
+
 export interface PizzaState {
-  data: Pizza[];
+  data: fromPizzas.Pizza[];
   loaded: boolean;
   loading: boolean;
 }
