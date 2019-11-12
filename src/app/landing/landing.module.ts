@@ -6,12 +6,15 @@ import { SplashComponent } from './view/splash/splash.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers} from '../store/reducers';
 import { ProductsComponent } from './feature/products/products.component';
+import {EffectsModule} from "@ngrx/effects";
+import {effects} from '../store/effects';
 
 @NgModule({
   declarations: [SplashComponent, ProductsComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
+    EffectsModule.forFeature(effects),
     StoreModule.forFeature('products', reducers)
   ]
 })
