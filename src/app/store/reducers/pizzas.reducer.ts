@@ -3,23 +3,13 @@ import * as fromPizzas from '../actions/pizzas.actions';
 
 
 export interface PizzaState {
-  data: fromPizzas.Pizza[];
+  entities: { [id: number]: fromPizzas.Pizza};
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: PizzaState = {
-  data: [
-    {
-      name: 'my pizza',
-      toppings: [
-        {
-          id: 6,
-          name: 'mushrooms'
-        }
-        ]
-    }
-  ],
+  entities: null,
   loaded: false,
   loading: false,
 };
@@ -35,12 +25,21 @@ export function reducer(
         loading: true,
       };
     case fromPizzas.LOAD_PIZZAS_SUCCESS:
-      const data = action.payload;
+      const pizzas = action.payload;
+      // tslint:disable-next-line:no-shadowed-variable
+      const entities = pizzas.reduce((entities: {[id: number]: fromPizzas.Pizza}, pizza) => {
+        return {
+          ...entities,
+          [pizza.id] : pizza
+        };
+      }, {
+        ...state.entities
+      });
       return {
         ...state,
         loading: false,
         loaded: true,
-        data,
+        entities,
       };
     case fromPizzas.LOAD_PIZZAS_FAIL:
       return {
@@ -52,8 +51,8 @@ export function reducer(
   return state;
 }
 
+export const getPizzaEntities = ( state: PizzaState) => state.entities;
 export const getPizzasLoading = (state: PizzaState) => state.loading;
 export const getPizzasLoaded = (state: PizzaState) => state.loaded;
-export const getPizzas = (state: PizzaState) => state.data;
 
 

@@ -9,7 +9,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './store/reducers/custom-route-serializer';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import {HttpClientModule} from "@angular/common/http";
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AppEffects]),
+    StoreRouterConnectingModule.forRoot({
+      routerState: RouterState.Full,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,6 @@ export class PizzaService {
   constructor(private http: HttpClient) { }
 
   getPizzas() {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos');
+    return this.http.get('http://localhost:3000/pizzas');
   }
 }

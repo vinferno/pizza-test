@@ -1,4 +1,4 @@
-
+import * as fromRouter from '@ngrx/router-store';
 
 import {
   ActionReducer,
@@ -12,10 +12,12 @@ import { stepperActions, StepperReducer } from './stepper/stepper-state';
 
 export interface State {
   stepperState: any;
+  router: fromRouter.RouterReducerState<any>;
 }
 
 export const reducers: ActionReducerMap<State> = {
   stepperState: StepperReducer,
+  router: null,
 };
 
 
