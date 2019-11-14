@@ -5,26 +5,7 @@ import { routerReducer } from '@ngrx/router-store';
 import { StepperReducer } from './stepper/stepper-state';
 import { environment } from '../../../environments/environment';
 
-
-export interface State {
-  stepperState: any;
-  router: fromRouter.RouterReducerState<any>;
-}
-
-export const reducers: ActionReducerMap<State> = {
-  stepperState: StepperReducer,
-  router: routerReducer,
-};
-
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
-
-
-
-export const stateActions = {
-
-};
-
+export * from './app.reducer';
 
 
 export interface ProductsState {

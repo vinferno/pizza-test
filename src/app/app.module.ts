@@ -12,7 +12,10 @@ import { AppEffects } from './app.effects';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './store/reducers/custom-route-serializer';
-import { metaReducers, reducers } from './store/reducers';
+import * as fromReducers from './store/reducers';
+
+
+const {metaReducers} = fromReducers;
 
 @NgModule({
   declarations: [
@@ -22,7 +25,7 @@ import { metaReducers, reducers } from './store/reducers';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
+    StoreModule.forRoot(fromReducers.reducers, {
       metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
