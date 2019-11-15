@@ -13,7 +13,9 @@ export class  User {
 export class UsersState {
   id: string[];
   entities: {[key: string]: User};
+  selected: string[] | number[];
 }
+
 
 export const usersAdapter = createEntityAdapter<User>();
 export interface UsersState extends EntityState<User> {}
@@ -74,11 +76,3 @@ export function usersReducer(
 
 }
 
-export const getUsersState = createFeatureSelector<UsersState>('users');
-
-export const {
-  selectAll: usersSelectAll,
-  selectEntities,
-  selectIds,
-  selectTotal,
-} = usersAdapter.getSelectors(getUsersState);

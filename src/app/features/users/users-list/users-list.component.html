@@ -5,3 +5,6 @@
 <div *ngFor="let user of ( users$ | async )">
 {{user.name}}
 </div>
+<div *ngIf="( users2$ | async )">
+  {{(users2$ | async).name | json}}
+</div>
