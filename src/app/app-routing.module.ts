@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)},
+  {path: '', loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule)},
 ];
 
 @NgModule({

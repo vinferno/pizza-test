@@ -8,7 +8,7 @@ import {of} from 'rxjs';
 
 @Injectable()
 export class PizzasEffect {
-  constructor(private actions$: Actions, private pizzaServie: PizzaService) {
+  constructor(private actions$: Actions, private pizzaService: PizzaService) {
   }
 
   @Effect()
@@ -16,7 +16,7 @@ export class PizzasEffect {
     ofType(pizzaActions.LOAD_PIZZAS),
     switchMap(() => {
       console.log('switch');
-      return this.pizzaServie.getPizzas().pipe(
+      return this.pizzaService.getPizzas().pipe(
         map((pizzas: Pizza[]) => new pizzaActions.LoadPizzasSuccess(pizzas)),
         catchError( (error) => of(new pizzaActions.LoadPizzasFail(error)))
       );

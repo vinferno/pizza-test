@@ -1,8 +1,6 @@
 import { createSelector } from '@ngrx/store';
-
-import * as fromRoot from '../../store';
 import * as fromFeature from '../reducers';
-import * as fromPizzas from '../reducers/pizzas.reducer';
+import { PizzaState } from '../reducers/pizzas.reducer';
 
 export const getPizzaState = createSelector(
   fromFeature.getProductsState,
@@ -10,7 +8,7 @@ export const getPizzaState = createSelector(
 );
 export const getPizzasEntities = createSelector(
   getPizzaState,
-  fromPizzas.getPizzaEntities,
+  ( state: PizzaState ) => state.entities,
 );
 
 export const getAllPizzas = createSelector(
@@ -26,10 +24,10 @@ export const getAllPizzas = createSelector(
 
 export const getPizzasLoaded = createSelector(
   getPizzaState,
-  fromPizzas.getPizzasLoaded,
+  ( state: PizzaState ) => state.loaded,
 );
 
 export const getPizzasLoading = createSelector(
   getPizzaState,
-  fromPizzas.getPizzasLoading,
+  ( state: PizzaState ) => state.loading,
 );

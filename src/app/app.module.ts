@@ -9,9 +9,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CustomSerializer } from './store/reducers/custom-route-serializer';
 import * as fromReducers from './store/reducers';
 
 
@@ -38,7 +37,7 @@ const {metaReducers} = fromReducers;
       routerState: RouterState.Minimal,
     }),
   ],
-  providers: [{provide: RouterStateSerializer, useClass: CustomSerializer}],
+  providers: [{provide: RouterStateSerializer, useClass: fromReducers.CustomSerializer}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
