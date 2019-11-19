@@ -10,23 +10,22 @@ export class  User {
   }
 }
 
-export class UsersState {
-  id: string[];
-  entities: {[key: string]: User};
-  selected: string[] | number[];
-}
-
 
 export const usersAdapter = createEntityAdapter<User>();
-export interface UsersState extends EntityState<User> {}
+export class UsersState implements EntityState<User> {
+  ids: string[];
+  entities: {[key: string]: User};
+  selected: string;
+}
 
 const defaultUsersState = new UsersState();
 
 export const initialStateUsers: UsersState = usersAdapter.getInitialState(defaultUsersState);
 
-export const CREATE     = '[Tests] Create';
-export const UPDATE     = '[Tests] Update';
-export const DELETE     = '[Tests] Delete';
+export const CREATE     = '[Users] Create';
+export const UPDATE     = '[Users] Update';
+export const DELETE     = '[Users] Delete';
+export const SELECT     = '[Users] Select';
 
 export class Create implements Action {
   readonly type = CREATE;
@@ -45,11 +44,17 @@ export class Delete implements Action {
   readonly type = DELETE;
   constructor(public id: string) { }
 }
+export class Select implements Action {
+  readonly type = SELECT;
+  constructor(public id: string) {
+  }
+}
 
 export type UsersActions
   = Create
   | Update
-  | Delete;
+  | Delete
+  | Select;
 
 export function usersReducer(
   state: UsersState = initialStateUsers,
@@ -68,7 +73,10 @@ export function usersReducer(
       }, state);
 
     case DELETE:
-      return usersAdapter.removeOne(action.id, state)
+      return usersAdapter.removeOne(action.id, state);
+
+    case SELECT:
+     return {...state, ...{selected: action.id }};
 
     default:
       return state;

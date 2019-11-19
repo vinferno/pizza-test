@@ -14,3 +14,8 @@ export const getUsersNames = createSelector(
   usersSelectAll,
   (users) => { console.log('users', users); return users[0]; }
 );
+
+export const getSelectedIds = createSelector(
+  getUsersState,
+  (state) => {console.log('state..', state); return state.selected; }
+);

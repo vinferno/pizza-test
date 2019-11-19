@@ -2,9 +2,10 @@
 <button (click)="createTest()">+</button>
 
 
-<div *ngFor="let user of ( users$ | async )">
+<div *ngFor="let user of ( users$ | async )" (click)="selectUser(user.id)" [ngClass]="styleUserButton(user, (selected$ | async))">
 {{user.name}}
 </div>
 <div *ngIf="( users2$ | async )">
   {{(users2$ | async).name | json}}
 </div>
+{{(selected$ | async) | json}}
