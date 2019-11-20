@@ -11,4 +11,7 @@ export class SessionService {
   getOperating() {
     return this.api.getSessionOperatingMode();
   }
+  login() {
+    return this.api.login();
+  }
 }
