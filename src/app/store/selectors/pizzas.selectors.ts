@@ -14,7 +14,6 @@ export const getPizzasEntities = createSelector(
 export const getAllPizzas = createSelector(
   getPizzasEntities,
   (entities) => {
-    console.log('entites', entities);
     if (!entities) {
       return [];
     }

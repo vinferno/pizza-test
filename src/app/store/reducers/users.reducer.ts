@@ -16,6 +16,7 @@ export class UsersState implements EntityState<User> {
   ids: string[];
   entities: {[key: string]: User};
   selected: string;
+  selectedIds: string[] = [];
 }
 
 const defaultUsersState = new UsersState();
@@ -26,6 +27,7 @@ export const CREATE     = '[Users] Create';
 export const UPDATE     = '[Users] Update';
 export const DELETE     = '[Users] Delete';
 export const SELECT     = '[Users] Select';
+export const SELECTID     = '[Users] Select ID';
 
 export class Create implements Action {
   readonly type = CREATE;
@@ -50,11 +52,18 @@ export class Select implements Action {
   }
 }
 
+export class SelectId implements Action {
+  readonly type = SELECTID;
+  constructor(public id: string) {
+  }
+}
+
 export type UsersActions
   = Create
   | Update
   | Delete
-  | Select;
+  | Select
+  | SelectId;
 
 export function usersReducer(
   state: UsersState = initialStateUsers,
@@ -77,6 +86,15 @@ export function usersReducer(
 
     case SELECT:
      return {...state, ...{selected: action.id }};
+
+    case SELECTID:
+      const selectedIds = [...state.selectedIds];
+      if (selectedIds.includes(action.id)) {
+        selectedIds.splice(selectedIds.indexOf(action.id), 1);
+      } else {
+        selectedIds.push(action.id);
+      }
+      return {...state, ...{selectedIds}};
 
     default:
       return state;

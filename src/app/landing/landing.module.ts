@@ -8,6 +8,7 @@ import { productReducers } from '../store/reducers';
 import { ProductsComponent } from './feature/products/products.component';
 import {EffectsModule} from '@ngrx/effects';
 import {effects} from '../store/effects';
+import { sessionReducer } from '../store/reducers/session.reducer';
 
 @NgModule({
   declarations: [SplashComponent, ProductsComponent],
@@ -15,7 +16,8 @@ import {effects} from '../store/effects';
     CommonModule,
     LandingRoutingModule,
     EffectsModule.forFeature(effects),
-    StoreModule.forFeature('products', productReducers)
+    StoreModule.forFeature('products', productReducers),
+    StoreModule.forFeature('session', sessionReducer)
   ]
 })
 export class LandingModule { }

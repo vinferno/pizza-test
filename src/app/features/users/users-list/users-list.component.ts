@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Create, Select, User, UsersState } from '../../../store/reducers/users.reducer';
+import { Create, Select, SelectId, User, UsersState } from '../../../store/reducers/users.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getSelectedIds, getUsersNames, usersSelectAll } from 'src/app/store/selectors/users.selectors';
+import { getSelectedIds, getSelectedIds2, getUsersNames, usersSelectAll } from 'src/app/store/selectors/users.selectors';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'vf-users-list',
@@ -13,13 +14,16 @@ export class UsersListComponent implements OnInit {
   public users$: Observable<User[]>;
   public users2$: Observable<User>;
   public selected$: Observable<string>;
+  public selectedIds$: Observable<string[]>;
 
-  constructor(private store: Store<UsersState>) { }
+  constructor(private store: Store<UsersState>, public api: ApiService) { }
 
   ngOnInit() {
     this.users$ = this.store.select(usersSelectAll);
     this.users2$ = this.store.select(getUsersNames);
     this.selected$ = this.store.select(getSelectedIds);
+    this.selectedIds$ = this.store.select(getSelectedIds2);
+    this.api.log();
   }
 
   createTest() {
@@ -32,11 +36,11 @@ export class UsersListComponent implements OnInit {
   }
 
   selectUser( id) {
-    this.store.dispatch(new Select(id));
+    this.store.dispatch(new SelectId(id));
   }
 
-  styleUserButton(user, selected) {
-    return { selected: user.id === selected};
+  styleUserButton(user, selected, selectedIds) {
+    return { selected: ( user.id === selected ) || ( selectedIds.includes(user.id) )};
   }
 
 }
