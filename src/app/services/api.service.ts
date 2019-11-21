@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiAuthCredentialsAgentService } from './endpoints/agent-login.endpoint';
 
 export interface ResponseOperating {
   operatingMode: string;
@@ -9,16 +10,18 @@ export interface ResponseOperating {
   providedIn: 'root'
 })
 export class ApiService {
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    public agentLogin: ApiAuthCredentialsAgentService,
+  ) { }
   log() {
   }
   getSessionOperatingMode() {
     console.log('working');
     return this.http.get<ResponseOperating>('http://localhost:7820/auth/operating');
   }
-  login() {
+  login(payload) {
     console.log('working');
-    return this.http.post<ResponseOperating>('http://localhost:7820/auth/credentials/agent');
+    return this.agentLogin.post<ResponseOperating>(payload);
   }
 }

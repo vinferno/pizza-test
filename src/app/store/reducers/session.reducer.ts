@@ -1,9 +1,4 @@
-import { createEntityAdapter } from '@ngrx/entity';
-import { Action, on } from '@ngrx/store';
-
-export class Session {
-  operatingMode: string;
-}
+import { Action } from '@ngrx/store';
 
 export class SessionState {
   operatingMode: string = 'init';
@@ -49,3 +44,4 @@ export function sessionReducer(
   }
 
 }
+

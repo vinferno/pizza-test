@@ -12,15 +12,21 @@ import { AppEffects } from './app.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import * as fromReducers from './store/reducers';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiAuthCredentialsAgentService } from './services/endpoints/agent-login.endpoint';
+import { FormService } from './services/form.service';
 
 
 const {metaReducers} = fromReducers;
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -37,7 +43,10 @@ const {metaReducers} = fromReducers;
       routerState: RouterState.Minimal,
     }),
   ],
-  providers: [{provide: RouterStateSerializer, useClass: fromReducers.CustomSerializer}],
+  providers: [{provide: RouterStateSerializer, useClass: fromReducers.CustomSerializer},
+  ApiAuthCredentialsAgentService,
+    FormService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

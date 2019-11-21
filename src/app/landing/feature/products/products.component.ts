@@ -29,13 +29,14 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(new UpdateOperatingMode('new value'));
     this.store.dispatch(new RequestSessionOperatingMode());
     this.loginForm = this.fb.group({
-      username: [''],
-      password: [''],
-      reCaptcha: [null],
-      agentLocation: [''],
+      username: ['hgs.vinson.fernandez'],
+      password: ['password1'],
+      reCaptcha: [true],
+      agentLocation: ['L'],
+      adminDirectSystem: 'C',
       location: this.fb.group({
-        adminCity: [''],
-        adminState: [''],
+        adminCity: ['fresno'],
+        adminState: ['CA'],
       }),
     });
   }
