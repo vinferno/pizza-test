@@ -5,4 +5,4 @@ export class ActionRouterNavAgentLoginSuccess {
     constructor(public payload: any) {}
 }
 // case ACTION_ROUTER_NAV_AGENT_LOGIN_SUCCESS:
-//  return ({...state, ...{ agentLoginSuccess: action.payload } });
+//  return ({...state, ...{ agentLoginSuccess: action.payload } });https://medium.com/@amcdnl/dispatching-multiple-actions-from-ngrx-effects-c1447ceb6b22
