@@ -3,10 +3,11 @@ import * as fromStore from '../../../store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Pizza } from '../../../store/actions';
-import { LoadPizzas } from '../../../store';
+import { AgentState, LoadPizzas } from '../../../store';
 import { getSelectedIds } from '../../../store/selectors/users.selectors';
 import { RequestLogin, RequestSessionOperatingMode, SessionState, UpdateOperatingMode } from '../../../store/reducers/session.reducer';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { getAgentState } from '../../../store/selectors/agent.selectors';
 @Component({
   selector: 'vf-products',
   templateUrl: './products.component.html',
@@ -17,6 +18,7 @@ export class ProductsComponent implements OnInit {
   public selected$ = null;
   public session$: Observable<SessionState>;
   public loginForm: FormGroup;
+  public agent$: Observable<AgentState>;
   constructor(
     private store: Store<fromStore.ProductsState>,
     private fb: FormBuilder,
@@ -26,7 +28,7 @@ export class ProductsComponent implements OnInit {
     this.pizzas$ = this.store.select(fromStore.getAllPizzas);
     this.selected$ = this.store.select(getSelectedIds);
     this.session$ = this.store.select('session');
-    this.store.dispatch(new UpdateOperatingMode('new value'));
+    this.agent$ = this.store.select(getAgentState);
     this.store.dispatch(new RequestSessionOperatingMode());
     this.loginForm = this.fb.group({
       username: ['hgs.vinson.fernandez'],
@@ -42,7 +44,6 @@ export class ProductsComponent implements OnInit {
   }
 
   public login() {
-    console.log('log in');
     this.store.dispatch(new RequestLogin(this.loginForm.value));
   }
 

@@ -5,7 +5,7 @@ import { FormService } from './form.service';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { AgentOnly } from '../store/reducers/agent.reducer';
+import { ActionAgentUpdateAll, AgentOnly } from '../store/reducers/agent.reducer';
 
 export class  ResponseAgentLogin {
   agent: AgentOnly;
@@ -34,5 +34,10 @@ export class SessionService {
       }),
       catchError((error: HttpErrorResponse) =>  of(error) )
     );
+  }
+  agentLoginSuccessFull(payload) {
+    const permissions = 'permissions';
+    payload.agent[ permissions ] = payload.permissions;
+    return new ActionAgentUpdateAll({...payload.agent});
   }
 }

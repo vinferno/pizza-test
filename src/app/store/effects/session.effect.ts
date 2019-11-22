@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ResponseAgentLogin, SessionService } from '../../services/session.service';
 import { ResponseOperating } from '../../services/api.service';
+import { ActionAgentUpdateAll } from '../reducers';
 
 @Injectable()
 export class SessionEffect {
@@ -28,7 +29,9 @@ export class SessionEffect {
     ofType(REQUEST_LOGIN),
     switchMap((action: RequestLogin) => {
       return this.sessionService.login(action.payload).pipe(
-        map((payload: ResponseAgentLogin) => new UpdateOperatingMode(payload.operatingMode) ),
+        map((payload: ResponseAgentLogin) => {
+          return this.sessionService.agentLoginSuccessFull(payload);
+           }),
         catchError((error) => of(new LoadPizzasFail(error)))
       );
     })

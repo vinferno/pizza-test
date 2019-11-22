@@ -17,6 +17,15 @@ export class AgentState extends AgentOnly {
 
 const defaultAgentState = new AgentState();
 
+// agent update all
+export const ACTION_AGENT_UPDATE_ALL = '[AGENT] (update) all';
+export class ActionAgentUpdateAll {
+    readonly type = ACTION_AGENT_UPDATE_ALL;
+    constructor(public payload: any) {}
+}
+
+
+
 // agent update agentID
 export const ACTION_AGENT_UPDATE_AGENT_ID = '[AGENT] (update) agentID';
 export class ActionAgentUpdateAgentID {
@@ -31,8 +40,9 @@ export class ActionAgentUpdateName {
 }
 
 export type AgentActions =
+  ActionAgentUpdateAgentID |
   ActionAgentUpdateName |
-  ActionAgentUpdateAgentID;
+  ActionAgentUpdateAll;
 
 
 export function agentReducer(
@@ -40,6 +50,8 @@ export function agentReducer(
   action: AgentActions
 ) {
   switch ( action.type ) {
+    case ACTION_AGENT_UPDATE_ALL:
+      return ({...state, ...{ ...action.payload } });
     case ACTION_AGENT_UPDATE_AGENT_ID:
       return ({...state, ...{ agentID: action.payload } });
     case ACTION_AGENT_UPDATE_NAME:
