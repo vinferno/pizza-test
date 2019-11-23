@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromStore from '../../../store';
+import { AgentState } from '../../../store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Pizza } from '../../../store/actions';
-import { AgentState, LoadPizzas } from '../../../store';
 import { getSelectedIds } from '../../../store/selectors/users.selectors';
-import { RequestLogin, RequestSessionOperatingMode, SessionState, UpdateOperatingMode } from '../../../store/reducers/session.reducer';
+import { ActionSessionApiRequestAgentLogin, ActionSessionApiRequestOperating, SessionState } from '../../../store/reducers/session.reducer';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { getAgentState } from '../../../store/selectors/agent.selectors';
+
 @Component({
   selector: 'vf-products',
   templateUrl: './products.component.html',
@@ -29,7 +30,7 @@ export class ProductsComponent implements OnInit {
     this.selected$ = this.store.select(getSelectedIds);
     this.session$ = this.store.select('session');
     this.agent$ = this.store.select(getAgentState);
-    this.store.dispatch(new RequestSessionOperatingMode());
+    this.store.dispatch(new ActionSessionApiRequestOperating());
     this.loginForm = this.fb.group({
       username: ['hgs.vinson.fernandez'],
       password: ['password1'],
@@ -44,7 +45,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public login() {
-    this.store.dispatch(new RequestLogin(this.loginForm.value));
+    this.store.dispatch(new ActionSessionApiRequestAgentLogin(this.loginForm.value));
   }
 
 }

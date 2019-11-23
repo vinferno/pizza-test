@@ -6,39 +6,47 @@ export class SessionState {
 
 const defaultSessionState = new SessionState();
 
-export const UPDATE_OPERATING_MODE = '[SESSION] update operatingMode';
-export const REQUEST_OPERATING_MODE = '[SESSION] request operatingMode';
-export const REQUEST_LOGIN = '[SESSION] Request login';
-
-export class UpdateOperatingMode implements Action {
-  readonly type = UPDATE_OPERATING_MODE;
-  constructor(public payload: string) {}
+// session apiRequest operating
+export const ACTION_SESSION_API_REQUEST_OPERATING = '[SESSION] (api-request) operating';
+export class ActionSessionApiRequestOperating {
+    readonly type = ACTION_SESSION_API_REQUEST_OPERATING;
+    constructor() {}
 }
 
-export class RequestSessionOperatingMode implements Action {
-  readonly type = REQUEST_OPERATING_MODE;
-  constructor() {}
+
+// session apiSuccess operating
+export const ACTION_SESSION_API_SUCCESS_OPERATING = '[SESSION] (api-success) operating';
+export class ActionSessionApiSuccessOperating {
+    readonly type = ACTION_SESSION_API_SUCCESS_OPERATING;
+    constructor(public payload: any) {}
 }
-export class RequestLogin implements Action {
-  readonly type = REQUEST_LOGIN;
-  constructor(public payload: any) {}
+
+// session apiRequest requestAgentLogin
+export const ACTION_SESSION_API_REQUEST_AGENT_LOGIN = '[SESSION] (api-request) agent-requestAgentLogin';
+export class ActionSessionApiRequestAgentLogin {
+    readonly type = ACTION_SESSION_API_REQUEST_AGENT_LOGIN;
+    constructor(public payload: any) {}
+}
+
+// session apiSuccess requestAgentLogin
+export const ACTION_SESSION_API_SUCCESS_AGENT_LOGIN = '[SESSION] (api-success) agent-requestAgentLogin';
+export class ActionSessionApiSuccessAgentLogin {
+    readonly type = ACTION_SESSION_API_SUCCESS_AGENT_LOGIN;
+    constructor(public payload: any) {}
 }
 
 export type SessionActions =
-  UpdateOperatingMode |
-  RequestSessionOperatingMode |
-  RequestLogin
-  ;
+  ActionSessionApiRequestOperating |
+  ActionSessionApiSuccessOperating |
+  ActionSessionApiRequestAgentLogin;
 
 export function sessionReducer(
   state: SessionState = defaultSessionState,
   action: SessionActions
 ) {
   switch ( action.type ) {
-    case UPDATE_OPERATING_MODE:
-      return ({...state, ...{ operatingMode: action.payload }});
-    case REQUEST_OPERATING_MODE:
-      return ({...state});
+    case ACTION_SESSION_API_SUCCESS_OPERATING:
+ return ({...state, ...{ operating: action.payload } });
     default:
       return state;
   }

@@ -24,8 +24,6 @@ export class ActionAgentUpdateAll {
     constructor(public payload: any) {}
 }
 
-
-
 // agent update agentID
 export const ACTION_AGENT_UPDATE_AGENT_ID = '[AGENT] (update) agentID';
 export class ActionAgentUpdateAgentID {
@@ -38,6 +36,15 @@ export class ActionAgentUpdateName {
     readonly type = ACTION_AGENT_UPDATE_NAME;
     constructor(public payload: any) {}
 }
+
+// agent success login
+export const ACTION_AGENT_SUCCESS_LOGIN = '[AGENT] (success) login';
+export class ActionAgentSuccessLogin {
+    readonly type = ACTION_AGENT_SUCCESS_LOGIN;
+    constructor(public payload: any) {}
+}
+
+
 
 export type AgentActions =
   ActionAgentUpdateAgentID |

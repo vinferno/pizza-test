@@ -1,13 +1,16 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { REQUEST_LOGIN, REQUEST_OPERATING_MODE, RequestLogin, UpdateOperatingMode } from '../reducers/session.reducer';
+import {
+  ACTION_SESSION_API_REQUEST_AGENT_LOGIN,
+  ACTION_SESSION_API_REQUEST_OPERATING,
+  ActionSessionApiSuccessOperating
+} from '../reducers/session.reducer';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { PizzaService } from '../../services/pizza.service';
-import { LoadPizzasFail, LoadPizzasSuccess, Pizza } from '../actions';
+import { LoadPizzasFail } from '../actions';
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ResponseAgentLogin, SessionService } from '../../services/session.service';
+import { SessionService } from '../../services/session.service';
 import { ResponseOperating } from '../../services/api.service';
-import { ActionAgentUpdateAll } from '../reducers';
+import { ActionRouterNavAgentLoginSuccess } from '../actions/router.actions';
 
 @Injectable()
 export class SessionEffect {
@@ -17,23 +20,22 @@ export class SessionEffect {
   ) {}
 
   @Effect()loadSessionOperatingMode = this.actions$.pipe(
-    ofType(REQUEST_OPERATING_MODE),
+    ofType(ACTION_SESSION_API_REQUEST_OPERATING),
     switchMap(() => {
       return this.sessionService.getOperating().pipe(
-        map((payload: ResponseOperating) => new UpdateOperatingMode(payload.operatingMode) ),
+        map((payload: ResponseOperating) => new ActionSessionApiSuccessOperating(payload.operatingMode) ),
         catchError((error) => of(new LoadPizzasFail(error)))
       );
     })
   );
-  @Effect()loginAgent = this.actions$.pipe(
-    ofType(REQUEST_LOGIN),
-    switchMap((action: RequestLogin) => {
-      return this.sessionService.login(action.payload).pipe(
-        map((payload: ResponseAgentLogin) => {
-          return this.sessionService.agentLoginSuccessFull(payload);
-           }),
-        catchError((error) => of(new LoadPizzasFail(error)))
-      );
-    })
+
+  @Effect() save = this.actions$.pipe(
+    ofType(ACTION_SESSION_API_REQUEST_AGENT_LOGIN),
+    map((action: any) => action.payload),
+    switchMap(payload => this.sessionService.requestAgentLogin(payload)),
+    switchMap(res => [
+        ...this.sessionService.requestAgentLoginSuccess(res),
+
+    ])
   );
 }

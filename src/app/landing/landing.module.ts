@@ -21,7 +21,7 @@ import { sessionReducers } from '../store/reducers/session.map';
     LandingRoutingModule,
     EffectsModule.forFeature(effects),
     StoreModule.forFeature('products', productReducers),
-    StoreModule.forFeature('session', sessionReducers)
+    StoreModule.forFeature('session', sessionReducers),
   ]
 })
 export class LandingModule { }

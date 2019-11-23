@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AgentDashboardComponent } from '../agentDashboard/agent-dashboard/agent-dashboard.component';
+import { AgentDashboardComponent } from './agent-dashboard/agent-dashboard.component';
+import { AnotherComponent } from './another/another.component';
 
 
 const routes: Routes = [
   {path: '', component: AgentDashboardComponent},
+  {path: 'another', component: AnotherComponent}
 ];
 
 @NgModule({

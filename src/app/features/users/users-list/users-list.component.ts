@@ -23,7 +23,6 @@ export class UsersListComponent implements OnInit {
     this.users2$ = this.store.select(getUsersNames);
     this.selected$ = this.store.select(getSelectedIds);
     this.selectedIds$ = this.store.select(getSelectedIds2);
-    this.api.log();
   }
 
   createTest() {

@@ -5,4 +5,14 @@ export class ActionRouterNavAgentLoginSuccess {
     constructor(public payload: any) {}
 }
 // case ACTION_ROUTER_NAV_AGENT_LOGIN_SUCCESS:
-//  return ({...state, ...{ agentLoginSuccess: action.payload } });https://medium.com/@amcdnl/dispatching-multiple-actions-from-ngrx-effects-c1447ceb6b22
+//  return ({...state, ...{ agentLoginSuccess: action.payload } });
+
+
+// router request agentLoginSuccess
+export const ACTION_ROUTER_REQUEST_AGENT_LOGIN_SUCCESS = '[ROUTER] (request) agent-login-success';
+export class ActionRouterRequestAgentLoginSuccess {
+    readonly type = ACTION_ROUTER_REQUEST_AGENT_LOGIN_SUCCESS;
+    constructor(public payload: any) {}
+}
+// case ACTION_ROUTER_REQUEST_AGENT_LOGIN_SUCCESS:
+//  return ({...state, ...{ agentLoginSuccess: action.payload } });
