@@ -18,7 +18,6 @@ export class ApiService {
   ) { }
 
   getSessionOperatingMode() {
-    console.log('working');
     return this.http.get<ResponseOperating>('http://localhost:7820/auth/operating');
   }
   login(payload) {

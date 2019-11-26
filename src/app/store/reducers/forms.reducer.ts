@@ -6,6 +6,31 @@ export interface UpdateFormField {
   value: any;
 }
 
+interface FormsCreate {
+  nameOfForm: string;
+  value: any;
+  errors: any;
+}
+
+interface FormsInit {
+  nameOfForm: string;
+}
+
+export interface HgFormErrorList {
+  list: any[];
+  [key: string]: any;
+}
+
+interface ActionPayloadFormErrors {
+  nameOfForm: string;
+  errors: HgFormErrorList;
+  status: string;
+}
+
+export class FormsState {
+  list: any = {};
+}
+
 // forms request updateField
 export const ACTION_FORMS_REQUEST_UPDATE_FIELD = '[FORMS] (request) update-field';
 export class ActionFormsRequestUpdateField {
@@ -24,17 +49,15 @@ export class ActionFormsUpdateField {
 export const ACTION_FORMS_UPDATE_FULL = '[FORMS] (update) full';
 export class ActionFormsUpdateFull {
     readonly type = ACTION_FORMS_UPDATE_FULL;
-    constructor(public payload: any) {}
+    constructor(public payload: FormsCreate) {}
 }
 
-interface FormsInit {
-  nameOfForm: string;
-}
+
 // forms init form
 export const ACTION_FORMS_INIT_FORM = '[FORMS] (init) form';
 export class ActionFormsInitForm {
     readonly type = ACTION_FORMS_INIT_FORM;
-    constructor(public payload: any) {}
+    constructor(public payload: FormsInit) {}
 }
 
 // forms initSuccess form
@@ -44,11 +67,6 @@ export class ActionFormsInitSuccessForm {
     constructor(public payload: any) {}
 }
 
-interface FormsCreate {
-  nameOfForm: string;
-  value: any;
-  errors: any;
-}
 // forms create form
 export const ACTION_FORMS_CREATE_FORM = '[FORMS] (create) form';
 export class ActionFormsCreateForm {
@@ -56,16 +74,6 @@ export class ActionFormsCreateForm {
     constructor(public payload: FormsCreate) {}
 }
 
-export interface HgFormErrorList {
-  list: any[];
-  [key: string]: any;
-}
-
-interface ActionPayloadFormErrors {
-  nameOfForm: string;
-  errors: HgFormErrorList;
-  status: string;
-}
 // forms update errors
 export const ACTION_FORMS_UPDATE_ERRORS = '[FORMS] (update) errors';
 export class ActionFormsUpdateErrors {
@@ -73,9 +81,7 @@ export class ActionFormsUpdateErrors {
     constructor(public payload: ActionPayloadFormErrors) {}
 }
 
-export class FormsState {
-  list: any = {};
-}
+
 const defaultFormsState = new FormsState();
 
 export type FormsActions =
@@ -93,7 +99,6 @@ export function formsReducer(
       const tempUpdateField = JSON.parse(JSON.stringify({...state.list}));
       if (state && state.list) {
         if (tempUpdateField[action.payload.nameOfForm]) {
-          console.log(tempUpdateField[action.payload.nameOfForm].value[action.payload.field]);
           tempUpdateField[action.payload.nameOfForm].value[action.payload.field] = action.payload.value;
         } else {
           return ({...state});
@@ -115,21 +120,20 @@ export function formsReducer(
       }
       return ({...state, ...{ list: tempCreate } });
     case ACTION_FORMS_UPDATE_FULL:
-      const tempUpdateFull = JSON.parse(JSON.stringify({...state.list}));
-      if (state && state.list) {
-        if (tempUpdateFull[action.payload.nameOfForm]) {
-          tempUpdateFull[action.payload.nameOfForm] = {
-            nameOfForm: action.payload.nameOfForm,
-            value: action.payload.value,
-            errors: action.payload.errors,
-          };
-        } else {
-          return ({...state});
-        }
+      const oldState = JSON.parse(JSON.stringify({...state}));
+      const newState = JSON.parse(JSON.stringify({...state}));
+      if (!(state && state.list && state.list[action.payload.nameOfForm])) {
+        return ({...state});
       }
-      return ({...state, ...{ list: tempUpdateFull } });
+      newState.list[action.payload.nameOfForm] = {
+        nameOfForm: action.payload.nameOfForm,
+        value: action.payload.value,
+        errors: action.payload.errors,
+      };
+
+      oldState.list = newState.list;
+      return ({...oldState});
     case ACTION_FORMS_UPDATE_ERRORS:
-      console.log('err');
       const tempUpdateErrors = JSON.parse(JSON.stringify({...state.list}));
       if (state && state.list) {
         if (tempUpdateErrors[action.payload.nameOfForm]) {

@@ -11,7 +11,6 @@ export class ContentService {
   ) { }
 
   getContentHeader() {
-    console.log('get content header');
     return this.api.contentHeader.post({
       language: 'en',
       route: 'counselor/member-lookup'

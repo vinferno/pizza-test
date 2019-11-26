@@ -5,8 +5,9 @@ import { AnotherComponent } from './another/another.component';
 
 
 const routes: Routes = [
-  {path: '', component: AgentDashboardComponent},
-  {path: 'another', component: AnotherComponent}
+
+  {path: 'member-lookup', component: AnotherComponent},
+  {path: '**', redirectTo: 'member-lookup'}
 ];
 
 @NgModule({

@@ -31,7 +31,6 @@ export class AgentAuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('check auth');
     return this.checkStoreAuthentication();
   }
   canActivateChild(

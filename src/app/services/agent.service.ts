@@ -9,7 +9,6 @@ export class AgentService {
 
   constructor() { }
   agentSuccessLogin(payload) {
-    console.log('agent success login', payload);
     return of(new ActionAgentUpdateAll(payload));
   }
 }
