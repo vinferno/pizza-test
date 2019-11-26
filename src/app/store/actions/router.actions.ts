@@ -16,3 +16,11 @@ export class ActionRouterRequestAgentLoginSuccess {
 }
 // case ACTION_ROUTER_REQUEST_AGENT_LOGIN_SUCCESS:
 //  return ({...state, ...{ agentLoginSuccess: action.payload } });
+
+// router request authGuardFail
+export const ACTION_ROUTER_REQUEST_AUTH_GUARD_FAIL = '[ROUTER] (request) auth-guard-fail';
+export class ActionRouterRequestAuthGuardFail {
+    readonly type = ACTION_ROUTER_REQUEST_AUTH_GUARD_FAIL;
+    constructor(public payload: any) {}
+}
+

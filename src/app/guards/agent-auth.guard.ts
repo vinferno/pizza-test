@@ -14,6 +14,7 @@ import { select, Store } from '@ngrx/store';
 import { AgentState, State } from '../store/reducers';
 import { getAgentState } from '../store/selectors/agent.selectors';
 import { first, map } from 'rxjs/operators';
+import { ActionRouterNavAgentLoginSuccess, ActionRouterRequestAuthGuardFail } from '../store/actions/router.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,13 @@ export class AgentAuthGuard implements CanActivate, CanActivateChild, CanLoad {
   private checkStoreAuthentication(): Observable<boolean> {
     return this.store.pipe(select(getAgentState)).pipe(
       first(),
-      map( agent => !!(agent && agent.agentID))
+      map( agent => {
+        const allowed = !!(agent && agent.agentID);
+        if (!allowed) {
+          this.store.dispatch(ActionRouterRequestAuthGuardFail)
+        }
+        return allowed;
+      })
     );
   }
 

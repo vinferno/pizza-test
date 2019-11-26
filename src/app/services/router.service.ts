@@ -18,4 +18,8 @@ export class RouterService {
     this.router.navigate(['agent-dashboard']);
     return of(new ActionAgentUpdateName('next'));
   }
+  routerRequestAuthGuardFail(payload) {
+    this.router.navigate(['agent-dashboard']);
+    return of(new ActionAgentUpdateName(''));
+  }
 }
