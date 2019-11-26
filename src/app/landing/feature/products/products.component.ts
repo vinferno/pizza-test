@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromStore from '../../../store';
-import { AgentState } from '../../../store';
+import { AgentState, FormsState } from '../../../store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Pizza } from '../../../store/actions';
@@ -20,12 +20,14 @@ export class ProductsComponent implements OnInit {
   public session$: Observable<SessionState>;
   public loginForm: FormGroup;
   public agent$: Observable<AgentState>;
+  public forms$: Observable<FormsState>;
   constructor(
     private store: Store<fromStore.ProductsState>,
     private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
+    this.forms$ = this.store.select('forms');
     this.pizzas$ = this.store.select(fromStore.getAllPizzas);
     this.selected$ = this.store.select(getSelectedIds);
     this.session$ = this.store.select('session');

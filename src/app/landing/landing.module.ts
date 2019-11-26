@@ -11,17 +11,20 @@ import {effects} from '../store/effects';
 import { sessionReducer } from '../store/reducers/session.reducer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { sessionReducers } from '../store/reducers/session.map';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [SplashComponent, ProductsComponent],
-  imports: [
+  imports : [
+    CoreModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     LandingRoutingModule,
-    EffectsModule.forFeature(effects),
-    StoreModule.forFeature('products', productReducers),
-    StoreModule.forFeature('session', sessionReducers),
+    EffectsModule.forFeature ( effects ),
+    StoreModule.forFeature ( 'products', productReducers ),
+    StoreModule.forFeature ( 'session', sessionReducers ),
+    CoreModule,
   ]
 })
 export class LandingModule { }
