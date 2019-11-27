@@ -10,6 +10,7 @@ import { AnotherComponent } from './another/another.component';
   imports: [
     CommonModule,
     AgentDashboardRoutingModule
-  ]
+  ],
+  providers: [],
 })
 export class AgentDashboardModule { }

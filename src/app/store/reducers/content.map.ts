@@ -1,6 +1,7 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
-import {contentHeaderReducer} from './content-header.reducer';
+import { contentHeaderReducer } from './content-header.reducer';
 import { ResponseContentHeaders } from '../../responses';
+
 // content action map
 export interface ContentState {
   contentHeader: ResponseContentHeaders;

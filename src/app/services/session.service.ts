@@ -5,9 +5,9 @@ import { FormService } from './form.service';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { ActionAgentUpdateAll, AgentOnly } from '../store/reducers/agent.reducer';
 import { ActionSessionApiSuccessAgentLogin } from '../store/reducers/session.reducer';
 import { ActionRouterNavAgentLoginSuccess, ActionRouterRequestAgentLoginSuccess } from '../store/actions/router.actions';
+import { ActionAgentUpdateAll, AgentOnly } from '../store/actions/agent.actions';
 
 export class  ResponseAgentLogin {
   agent: AgentOnly;
@@ -28,7 +28,6 @@ export class SessionService {
     return this.api.getSessionOperatingMode();
   }
   requestAgentLogin( payload) {
-    console.log(payload);
     return this.api.login(this.formService.serializeObj(payload)).pipe(
       map((response: ResponseAgentLogin ) => {
         response.agent.name = response.agent.name.toUpperCase();

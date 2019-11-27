@@ -2,8 +2,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { FormsService } from '../../services/forms.service';
-import { ACTION_FORMS_INIT_FORM, ACTION_FORMS_REQUEST_UPDATE_FIELD, ActionFormsInitSuccessForm, ActionFormsUpdateFull } from '../reducers';
 import { map, switchMap } from 'rxjs/operators';
+import {
+  ACTION_FORMS_INIT_FORM,
+  ACTION_FORMS_REQUEST_UPDATE_FIELD,
+  ActionFormsInitSuccessForm,
+  ActionFormsUpdateFull
+} from '../actions/forms.actions';
 
 @Injectable()
 export class FormsEffect {

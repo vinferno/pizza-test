@@ -18,7 +18,6 @@ import { FormService } from './services/form.service';
 import { ApiContentHeader } from './services/endpoints/content-header.endpoint';
 import { AuthInterceptor } from './services/endpoints/api-interceptor.service';
 import { CoreModule } from './core/core.module';
-import { HgFormBindInputDirective } from './directives/hg-form-bind-input.directive';
 
 
 const {metaReducers} = fromReducers;
@@ -49,7 +48,7 @@ const {metaReducers} = fromReducers;
     }),
   ],
   providers: [{provide: RouterStateSerializer, useClass: fromReducers.CustomSerializer},
-  ApiAuthCredentialsAgentService,
+    ApiAuthCredentialsAgentService,
     ApiContentHeader,
     FormService,
     {

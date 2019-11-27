@@ -1,14 +1,14 @@
-import {PizzasEffect} from './pizzas.effect';
 import { SessionEffect } from './session.effect';
 import { RouterEffect } from './router.effect';
 import { FormsEffect } from './forms.effect';
+import { AgentEffect } from './agent.effect';
+import { ApiEffect } from './api.effects';
 
 export const effects: any[] = [
-  PizzasEffect,
   SessionEffect,
   RouterEffect,
   FormsEffect,
+  AgentEffect,
+  ApiEffect,
 ];
-
-export * from './pizzas.effect';
 

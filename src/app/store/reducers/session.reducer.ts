@@ -1,5 +1,3 @@
-import { Action } from '@ngrx/store';
-
 export class SessionState {
   operatingMode: string = 'init';
 }

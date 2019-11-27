@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ActionFormsRequestUpdateField, UpdateFormField } from '../store/reducers';
+import { ActionFormsRequestUpdateField } from '../store/actions/forms.actions';
 
 interface BindInput {
   name: string;

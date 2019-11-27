@@ -1,12 +1,6 @@
 // contentHeader update all
 import { ResponseContentHeaders } from '../../responses';
-
-export const ACTION_CONTENT_HEADER_UPDATE_ALL = '[CONTENT_HEADER] (update) all';
-export class ActionContentHeaderUpdateAll {
-    readonly type = ACTION_CONTENT_HEADER_UPDATE_ALL;
-    constructor(public payload: any) {}
-}
-
+import { ACTION_CONTENT_HEADER_UPDATE_ALL, ActionContentHeaderUpdateAll } from '../actions';
 
 // contentHeader reducer
 export type ContentHeaderActions = ActionContentHeaderUpdateAll;

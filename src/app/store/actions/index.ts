@@ -1,2 +1,2 @@
-export * from './pizzas.actions';
+export * from './content-header.actions';
 

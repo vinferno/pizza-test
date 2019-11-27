@@ -11,7 +11,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { AgentState, State } from '../store/reducers';
+import { State } from '../store/reducers';
 import { getAgentState } from '../store/selectors/agent.selectors';
 import { first, map } from 'rxjs/operators';
 import { ActionRouterNavAgentLoginSuccess, ActionRouterRequestAuthGuardFail } from '../store/actions/router.actions';
@@ -28,7 +28,7 @@ export class AgentAuthGuard implements CanActivate, CanActivateChild, CanLoad {
       map( agent => {
         const allowed = !!(agent && agent.agentID);
         if (!allowed) {
-          this.store.dispatch(ActionRouterRequestAuthGuardFail)
+          this.store.dispatch(new ActionRouterRequestAuthGuardFail(''));
         }
         return allowed;
       })

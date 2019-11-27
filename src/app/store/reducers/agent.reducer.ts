@@ -1,56 +1,12 @@
-
-export class AgentOnly {
-  agentID: number = null;
-  name: string = null;
-  canCreateMembers: boolean = null;
-  canAccessCRM: boolean = null;
-  mustResetPassword: boolean = null;
-  isSupervisor: boolean = null;
-  dashboardTemplate: string = null;
-  brokerImagePath: string = null;
-  hasAccessToAllBrokers: boolean = null;
-  brokerID: number = null;
-}
-export class AgentState extends AgentOnly {
-  permissions: string[] = null;
-}
-
-const defaultAgentState = new AgentState();
-
-// agent update all
-export const ACTION_AGENT_UPDATE_ALL = '[AGENT] (update) all';
-export class ActionAgentUpdateAll {
-    readonly type = ACTION_AGENT_UPDATE_ALL;
-    constructor(public payload: any) {}
-}
-
-// agent update agentID
-export const ACTION_AGENT_UPDATE_AGENT_ID = '[AGENT] (update) agentID';
-export class ActionAgentUpdateAgentID {
-    readonly type = ACTION_AGENT_UPDATE_AGENT_ID;
-    constructor(public payload: any) {}
-}
-
-export const ACTION_AGENT_UPDATE_NAME = '[AGENT] (update) name';
-export class ActionAgentUpdateName {
-    readonly type = ACTION_AGENT_UPDATE_NAME;
-    constructor(public payload: any) {}
-}
-
-// agent success login
-export const ACTION_AGENT_SUCCESS_LOGIN = '[AGENT] (success) login';
-export class ActionAgentSuccessLogin {
-    readonly type = ACTION_AGENT_SUCCESS_LOGIN;
-    constructor(public payload: any) {}
-}
-
-
-
-export type AgentActions =
-  ActionAgentUpdateAgentID |
-  ActionAgentUpdateName |
-  ActionAgentUpdateAll;
-
+import {
+  ACTION_AGENT_UPDATE_AGENT_COMPANIES,
+  ACTION_AGENT_UPDATE_AGENT_ID,
+  ACTION_AGENT_UPDATE_ALL,
+  ACTION_AGENT_UPDATE_NAME,
+  AgentActions,
+  AgentState,
+  defaultAgentState
+} from '../actions/agent.actions';
 
 export function agentReducer(
   state: AgentState = defaultAgentState,
@@ -63,7 +19,8 @@ export function agentReducer(
       return ({...state, ...{ agentID: action.payload } });
     case ACTION_AGENT_UPDATE_NAME:
       return ({...state, ...{ name: action.payload } });
-
+      case ACTION_AGENT_UPDATE_AGENT_COMPANIES:
+        return ({...state, ...{ agentCompanies: action.payload } });
 // agent reducer
     default:
       return state;

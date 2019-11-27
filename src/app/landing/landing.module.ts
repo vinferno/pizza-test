@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { LandingRoutingModule } from './landing-routing.module';
 import { SplashComponent } from './view/splash/splash.component';
 import { StoreModule } from '@ngrx/store';
-import { productReducers } from '../store/reducers';
 import { ProductsComponent } from './feature/products/products.component';
 import {EffectsModule} from '@ngrx/effects';
 import {effects} from '../store/effects';
@@ -22,7 +21,6 @@ import { CoreModule } from '../core/core.module';
     ReactiveFormsModule,
     LandingRoutingModule,
     EffectsModule.forFeature ( effects ),
-    StoreModule.forFeature ( 'products', productReducers ),
     StoreModule.forFeature ( 'session', sessionReducers ),
     CoreModule,
   ]

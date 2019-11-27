@@ -10,7 +10,6 @@ const routes: Routes = [
   canActivate: [AgentAuthGuard],
     resolve: [ContentHeaderResolver]
   },
-  {path: '', loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule)},
 ];
 
 @NgModule({

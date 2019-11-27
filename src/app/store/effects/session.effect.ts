@@ -5,12 +5,11 @@ import {
   ActionSessionApiSuccessOperating
 } from '../reducers/session.reducer';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { LoadPizzasFail } from '../actions';
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SessionService } from '../../services/session.service';
 import { ResponseOperating } from '../../services/api.service';
-import { ActionRouterNavAgentLoginSuccess } from '../actions/router.actions';
+import { ActionSessionFailGetOperating } from '../actions/session.actions';
 
 @Injectable()
 export class SessionEffect {
@@ -24,7 +23,7 @@ export class SessionEffect {
     switchMap(() => {
       return this.sessionService.getOperating().pipe(
         map((payload: ResponseOperating) => new ActionSessionApiSuccessOperating(payload.operatingMode) ),
-        catchError((error) => of(new LoadPizzasFail(error)))
+        catchError((error) => of(new ActionSessionFailGetOperating(error)))
       );
     })
   );

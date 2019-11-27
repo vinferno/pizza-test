@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ActionFormsInitForm, ActionFormsRequestUpdateField, ActionFormsUpdateField } from '../../../store/reducers';
+import { ActionFormsInitForm } from '../../../store/actions/forms.actions';
 
 @Component({
   selector: 'vf-splash',
@@ -13,12 +13,6 @@ export class SplashComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new ActionFormsInitForm({nameOfForm: 'agentLogin' }));
-    setTimeout((  ) => {
-      this.store.dispatch(new ActionFormsRequestUpdateField({ nameOfForm: 'agentLogin', field: 'test', value: 2 }));
-    }, 2000);
-    setTimeout((  ) => {
-      this.store.dispatch(new ActionFormsRequestUpdateField({ nameOfForm: 'agentLogin', field: 'test', value: 4 }));
-    }, 4000);
   }
 
 }

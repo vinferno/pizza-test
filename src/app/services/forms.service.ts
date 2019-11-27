@@ -8,7 +8,7 @@ import {
   ActionFormsUpdateField,
   HgFormErrorList,
   UpdateFormField
-} from '../store/reducers';
+} from '../store/actions/forms.actions';
 
 export function forbiddenNameValidator(limit: number): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
@@ -25,7 +25,6 @@ export class FormsService {
 
   constructor(private fb: FormBuilder, private store: Store<any>) { }
   formsInitForm(payload) {
-    console.log('formsInit', payload);
     const nameOfForm = payload.nameOfForm;
     this.forms[nameOfForm] = this.fb.group({test: [0, Validators.compose([forbiddenNameValidator(1)])]});
     const formGroup: FormGroup = this.forms[nameOfForm];
@@ -40,7 +39,6 @@ export class FormsService {
   }
   formsRequestUpdateField(payload: UpdateFormField) {
     this.forms[payload.nameOfForm].get(payload.field).setValue(payload.value);
-    console.log(this.forms[payload.nameOfForm].get(payload.field).value);
     this.store.dispatch(new ActionFormsUpdateField(payload));
     return of(payload);
   }
@@ -61,7 +59,6 @@ export class FormsService {
       const controlErrors: ValidationErrors = form.get(key).errors;
       if (controlErrors != null) {
         Object.keys(controlErrors).forEach(keyError => {
-          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
           errors.list.push({key, keyError, value: controlErrors[keyError]});
           errors[key] = keyError;
         });
