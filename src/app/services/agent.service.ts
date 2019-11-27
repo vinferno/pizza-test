@@ -15,7 +15,6 @@ export class AgentService {
     return of(new ActionAgentUpdateAll(payload));
   }
   public agentRequestEnabledCompanies() {
-    console.log('Service: Agent, request enabled companies');
     this.store.dispatch(new ActionApiRequestAgentEnabledCompanies());
     return of(new ActionApiRequestAgentEnabledCompanies());
   }

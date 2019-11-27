@@ -26,12 +26,9 @@ export class AgentEffect {
   @Effect() enabledCompanies = this.actions$.pipe(
       ofType(ACTION_AGENT_REQUEST_ENABLED_COMPANIES),
       map((action: any) => {
-        console.log('agent request enabled');
         return action.payload;
       }),
       switchMap((payload) => {
-        console.log(payload);
-        console.log('got here', this.agentService);
         return this.agentService.agentRequestEnabledCompanies();
       }),
       switchMap(res => [

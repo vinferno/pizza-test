@@ -4,7 +4,12 @@ import { ActionAgentRequestEnabledCompanies, AgentState } from '../../../store/a
 import { getAgentState } from '../../../store/selectors/agent.selectors';
 import { Observable } from 'rxjs';
 import { ResponseContentHeaders } from '../../../responses';
-import { getContentHeader } from '../../../store/selectors/content.selectors';
+import { getClientManager, getContentHeader } from '../../../store/selectors/content.selectors';
+import { getContentState } from '../../../store/reducers/content.map';
+import { ClientManagerState } from '../../../store/reducers/client-manager.reducer';
+import { RouterStateUrl } from '../../../store/reducers';
+import { getUrlState } from '../../../store/selectors/router.selectors';
+import { SerializedRouterStateSnapshot } from '@ngrx/router-store/src/serializers/default_serializer';
 
 @Component({
   selector: 'vf-another',
@@ -13,15 +18,16 @@ import { getContentHeader } from '../../../store/selectors/content.selectors';
 })
 export class AnotherComponent implements OnInit {
   agent$: Observable<AgentState>;
+  public clientManager$: Observable<ClientManagerState>;
   contentHeader$: Observable<ResponseContentHeaders>;
+  public url$: Observable<SerializedRouterStateSnapshot>;
   constructor(public store: Store<any>) { }
 
   ngOnInit() {
     this.agent$ = this.store.select(getAgentState);
+    this.clientManager$ = this.store.select(getClientManager);
     this.contentHeader$ = this.store.select(getContentHeader);
-    this.contentHeader$.subscribe( answer => {
-      console.log(answer, 'answer');
-    });
+    this.url$ = this.store.select(getUrlState);
     this.store.dispatch(new ActionAgentRequestEnabledCompanies(''));
   }
 

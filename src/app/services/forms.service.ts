@@ -28,7 +28,6 @@ export class FormsService {
     const nameOfForm = payload.nameOfForm;
     this.forms[nameOfForm] = this.fb.group({test: [0, Validators.compose([forbiddenNameValidator(1)])]});
     const formGroup: FormGroup = this.forms[nameOfForm];
-    console.log(formGroup);
     const errors = this.getFormValidationErrors(formGroup);
     const newPayload = {nameOfForm, value: formGroup.value, errors};
     this.store.dispatch(new ActionFormsCreateForm(newPayload));

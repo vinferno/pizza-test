@@ -19,7 +19,6 @@ export class ContentHeaderResolver implements Resolve<ResponseContentHeaders> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any>|Promise<any>|any {
-    console.log('resolver: content-header');
     return this.contentService.getContentHeader().pipe(
       map( res => {
         this.store.dispatch( new ActionContentHeaderUpdateAll(res));

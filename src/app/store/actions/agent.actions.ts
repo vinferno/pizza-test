@@ -64,7 +64,6 @@ export const ACTION_AGENT_UPDATE_AGENT_COMPANIES = '[AGENT] (update) agent-compa
 export class ActionAgentUpdateAgentCompanies implements Action {
   readonly type = ACTION_AGENT_UPDATE_AGENT_COMPANIES;
   constructor(public payload: any) {
-    console.log(payload, 'payload');
   }
 }
 

@@ -4,7 +4,8 @@ import { ACTION_API_REQUEST_AGENT_ENABLED_COMPANIES } from '../actions/api.actio
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { ApiService } from '../../services/api.service';
 import { map, switchMap } from 'rxjs/operators';
-import { ActionAgentUpdateAgentCompanies } from '../actions/agent.actions';
+import { ActionAgentUpdateAgentCompanies, EnabledCompanies } from '../actions/agent.actions';
+import { ApiGetAgentEnabledCompanies } from '../../services/endpoints/request';
 
 @Injectable()
 export class ApiEffect {
@@ -17,8 +18,7 @@ export class ApiEffect {
       ofType(ACTION_API_REQUEST_AGENT_ENABLED_COMPANIES),
       map((action: any) => action.payload),
       switchMap(payload => {
-        console.log('get enabled');
-        return this.apiService.agent.enabledCompanies.get();
+        return this.apiService.request<EnabledCompanies>(new ApiGetAgentEnabledCompanies());
       }),
       switchMap(res => [
         new ActionAgentUpdateAgentCompanies(res.agentCompanies)

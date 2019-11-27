@@ -70,14 +70,10 @@ export class ApiService {
   public deleteAction: string;
   constructor(
     private http: HttpClient,
-    public agentLogin: ApiAuthCredentialsAgentService,
-    public contentHeader: ApiContentHeader,
-    public agent: EndpointsAgents,
     public store: Store<any>,
   ) { }
 
   request<T>(config: ApiConfig, payload?: any) {
-    console.log('config', config);
     switch (config.method ) {
       case 'put':
         return this.put(payload, config.route, config.headers);

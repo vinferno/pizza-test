@@ -28,3 +28,17 @@ export class ApiPostContentHeader implements ApiConfig {
   headers = headersGetValidate;
   method = methodPost;
 }
+
+// getAgentEnabledCompanies
+export class ApiGetAgentEnabledCompanies implements ApiConfig {
+  route = '/agents/enabled-companies';
+  headers = headersGetValidate;
+  method = methodGet;
+}
+
+// getClientManager
+export class ApiGetClientManager implements ApiConfig {
+  route = '/client-manager';
+  headers = headersGetValidate;
+  method = methodPost;
+}

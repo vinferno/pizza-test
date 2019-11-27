@@ -3,6 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 import { ACTION_ROUTER_REQUEST_AGENT_LOGIN_SUCCESS, ACTION_ROUTER_REQUEST_AUTH_GUARD_FAIL } from '../actions/router.actions';
 import { RouterService } from '../../services/router.service';
+import { ActionClientManagerUpdateFull } from '../actions/client-manager.actions';
 
 @Injectable()
 export class RouterEffect {
@@ -33,7 +34,8 @@ export class RouterEffect {
       ofType('@ngrx/router-store/navigated'),
       map((action: any) => action.payload),
       switchMap(payload => this.routerService.getClientManager(payload)),
-      switchMap(res => [
-      ])
+    switchMap(res => [
+      new ActionClientManagerUpdateFull(res)
+    ])
     );
 }
