@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { usersAdapter, UsersState } from '../reducers/users.reducer';
+import {usersAdapter, UsersState} from "../actions/users.actions";
 
 export const getUsersState = createFeatureSelector<UsersState>('users');
 
