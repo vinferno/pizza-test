@@ -6,7 +6,7 @@ import { ContentHeaderResolver } from './resolvers/content-header';
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)},
-  {path: 'agent-dashboard', loadChildren: () => import('./views/agent-dashboard/agent-dashboard.module').then(m => m.AgentDashboardModule),
+  {path: 'counselor', loadChildren: () => import('./views/agent-dashboard/agent-dashboard.module').then(m => m.AgentDashboardModule),
   canActivate: [AgentAuthGuard],
     resolve: [ContentHeaderResolver]
   },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
+import { ApiService, ResponseOperating } from './api.service';
 import { of } from 'rxjs';
 import { FormService } from './form.service';
 import { catchError, map } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { ActionSessionApiSuccessAgentLogin } from '../store/reducers/session.reducer';
 import { ActionRouterNavAgentLoginSuccess, ActionRouterRequestAgentLoginSuccess } from '../store/actions/router.actions';
 import { ActionAgentUpdateAll, AgentOnly } from '../store/actions/agent.actions';
+import { ApiAgentLogin, ApiGetOperatingMode } from './endpoints/request';
 
 export class  ResponseAgentLogin {
   agent: AgentOnly;
@@ -25,10 +26,10 @@ export class SessionService {
     private store: Store<any>,
     ) { }
   getOperating() {
-    return this.api.getSessionOperatingMode();
+    return this.api.request<ResponseOperating>(new ApiGetOperatingMode());
   }
   requestAgentLogin( payload) {
-    return this.api.login(this.formService.serializeObj(payload)).pipe(
+    return this.api.request(new ApiAgentLogin(), this.formService.serializeObj(payload)).pipe(
       map((response: ResponseAgentLogin ) => {
         response.agent.name = response.agent.name.toUpperCase();
         return response;

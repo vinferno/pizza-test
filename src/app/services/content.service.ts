@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { ApiPostContentHeader } from './endpoints/request';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,9 @@ export class ContentService {
   ) { }
 
   getContentHeader() {
-    return this.api.contentHeader.post({
+    return this.api.request(new ApiPostContentHeader(), {
       language: 'en',
       route: 'counselor/member-lookup'
     });
-
   }
 }

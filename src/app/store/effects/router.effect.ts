@@ -28,4 +28,12 @@ export class RouterEffect {
       switchMap(res => [
       ])
     );
+  // router request navigated
+  @Effect() navigated = this.actions$.pipe(
+      ofType('@ngrx/router-store/navigated'),
+      map((action: any) => action.payload),
+      switchMap(payload => this.routerService.getClientManager(payload)),
+      switchMap(res => [
+      ])
+    );
 }

@@ -10,11 +10,15 @@ export class RouterService {
 
   constructor(private router: Router) { }
   requestAgentLoginSuccess(payload) {
-    this.router.navigate(['agent-dashboard']);
+    this.router.navigate(['counselor']);
     return of(new ActionAgentUpdateName('next'));
   }
   routerRequestAuthGuardFail(payload) {
     this.router.navigate(['']);
     return of(null);
+  }
+  getClientManager(payload) {
+    console.log('payload', payload);
+    return of(payload);
   }
 }

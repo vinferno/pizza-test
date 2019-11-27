@@ -8,8 +8,11 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SessionService } from '../../services/session.service';
-import { ResponseOperating } from '../../services/api.service';
 import { ActionSessionFailGetOperating } from '../actions/session.actions';
+import { ActionSystemUpdateOperatingMode } from '../actions/system.actions';
+export interface ResponseOperating {
+  operatingMode: string;
+}
 
 @Injectable()
 export class SessionEffect {
@@ -22,7 +25,11 @@ export class SessionEffect {
     ofType(ACTION_SESSION_API_REQUEST_OPERATING),
     switchMap(() => {
       return this.sessionService.getOperating().pipe(
-        map((payload: ResponseOperating) => new ActionSessionApiSuccessOperating(payload.operatingMode) ),
+        map((payload: ResponseOperating) => payload),
+        switchMap(payload => [
+          new ActionSessionApiSuccessOperating(''),
+          new ActionSystemUpdateOperatingMode(payload.operatingMode)
+        ]),
         catchError((error) => of(new ActionSessionFailGetOperating(error)))
       );
     })
