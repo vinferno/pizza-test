@@ -1,15 +1,11 @@
-<div >
-  <ng-container *ngFor="let item of (clientManager$ | async).routes">
-    <button class="client-manager-button" [ngClass]="{selected: item.routeValue === (url$ | async).url }">{{ item.textForDisplay }}</button>
-  </ng-container>
-</div>
-<h2>{{(contentHeader$| async).contentTitleMWP}}</h2>
-<p [innerHTML]="(contentHeader$ | async).text">
+<div class="page-padding">
 
-</p>
+
+
 <select name="" id="">
   <ng-container *ngFor="let company of ( agent$ | async ).agentCompanies">
     <option [value]="company">{{company.companyName}}</option>
   </ng-container>
 
 </select>
+</div>

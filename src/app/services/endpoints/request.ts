@@ -42,3 +42,10 @@ export class ApiGetClientManager implements ApiConfig {
   headers = headersGetValidate;
   method = methodPost;
 }
+
+// getMemberSearchHistory
+export class ApiGetMemberSearchHistory implements ApiConfig {
+  route = 'agents/member-search-history';
+  headers = headersGetValidate;
+  method = methodGet;
+}

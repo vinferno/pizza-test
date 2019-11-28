@@ -18,16 +18,11 @@ import { SerializedRouterStateSnapshot } from '@ngrx/router-store/src/serializer
 })
 export class AnotherComponent implements OnInit {
   agent$: Observable<AgentState>;
-  public clientManager$: Observable<ClientManagerState>;
-  contentHeader$: Observable<ResponseContentHeaders>;
-  public url$: Observable<SerializedRouterStateSnapshot>;
+
   constructor(public store: Store<any>) { }
 
   ngOnInit() {
     this.agent$ = this.store.select(getAgentState);
-    this.clientManager$ = this.store.select(getClientManager);
-    this.contentHeader$ = this.store.select(getContentHeader);
-    this.url$ = this.store.select(getUrlState);
     this.store.dispatch(new ActionAgentRequestEnabledCompanies(''));
   }
 

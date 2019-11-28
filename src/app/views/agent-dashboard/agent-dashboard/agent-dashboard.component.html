@@ -1,1 +1,11 @@
-<p>agent-dashboard works!</p>
+<div class="page-padding">
+  <ng-container *ngFor="let item of (clientManager$ | async).routes">
+    <button [routerLink]="item.routeValue" class="client-manager-button" [ngClass]="{selected: item.routeValue === (url$ | async).url }">{{ item.textForDisplay }}</button>
+  </ng-container>
+  <h2>{{(contentHeader$| async).contentTitleMWP}}</h2>
+  <p [innerHTML]="(contentHeader$ | async).text">
+
+  </p>
+</div>
+
+<router-outlet></router-outlet>
