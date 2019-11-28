@@ -45,7 +45,26 @@ export class ApiGetClientManager implements ApiConfig {
 
 // getMemberSearchHistory
 export class ApiGetMemberSearchHistory implements ApiConfig {
-  route = 'agents/member-search-history';
+  route = '/agents/member-search-history';
   headers = headersGetValidate;
   method = methodGet;
+}
+
+export class LookupHistory {
+  systemNumber: number;
+  firstName: string;
+  lastName: string;
+  status: string;
+  ssn: string;
+  companyName: string;
+  employeeID: string;
+  payrollNumber: string;
+  homeEmail: string;
+  homePhone: string;
+  birthDate: string;
+  memberName: string;
+  isVerified: boolean;
+}
+export class ResponseMemberSearchHistory {
+  matchingMembers: LookupHistory[];
 }

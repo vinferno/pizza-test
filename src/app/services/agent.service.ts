@@ -3,13 +3,18 @@ import { of } from 'rxjs';
 import { ActionApiRequestAgentEnabledCompanies } from '../store/actions/api.actions';
 import { Store } from '@ngrx/store';
 import { ActionAgentUpdateAll } from '../store/actions/agent.actions';
+import { ApiService } from './api.service';
+import { ApiGetMemberSearchHistory, ResponseMemberSearchHistory } from './endpoints/request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgentService {
 
-  constructor(private store: Store<any>) {
+  constructor(
+    private store: Store<any>,
+    private api: ApiService,
+  ) {
   }
   public agentSuccessLogin(payload) {
     return of(new ActionAgentUpdateAll(payload));
@@ -17,5 +22,8 @@ export class AgentService {
   public agentRequestEnabledCompanies() {
     this.store.dispatch(new ActionApiRequestAgentEnabledCompanies());
     return of(new ActionApiRequestAgentEnabledCompanies());
+  }
+  public agentRequestLookupHistory() {
+    return this.api.request<ResponseMemberSearchHistory>(new ApiGetMemberSearchHistory());
   }
 }

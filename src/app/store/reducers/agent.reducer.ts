@@ -1,7 +1,7 @@
 import {
   ACTION_AGENT_UPDATE_AGENT_COMPANIES,
   ACTION_AGENT_UPDATE_AGENT_ID,
-  ACTION_AGENT_UPDATE_ALL,
+  ACTION_AGENT_UPDATE_ALL, ACTION_AGENT_UPDATE_LOOKUP_HISTORY,
   ACTION_AGENT_UPDATE_NAME,
   AgentActions,
   AgentState,
@@ -21,6 +21,8 @@ export function agentReducer(
       return ({...state, ...{ name: action.payload } });
       case ACTION_AGENT_UPDATE_AGENT_COMPANIES:
         return ({...state, ...{ agentCompanies: action.payload } });
+    case ACTION_AGENT_UPDATE_LOOKUP_HISTORY:
+      return ({...state, ...{ lookupHistory: action.payload } });
 // agent reducer
     default:
       return state;

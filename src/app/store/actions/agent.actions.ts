@@ -1,5 +1,6 @@
 // agent request enabledCompanies
 import { Action } from '@ngrx/store';
+import { LookupHistory } from '../../services/endpoints/request';
 
 export class EnabledCompanies {
   companyID: number;
@@ -19,6 +20,7 @@ export class AgentOnly {
   hasAccessToAllBrokers: boolean = null;
   brokerID: number = null;
   agentCompanies: EnabledCompanies[] = [];
+  lookupHistory: LookupHistory[] = [];
 }
 export class AgentState extends AgentOnly {
   permissions: string[] = null;
@@ -67,8 +69,22 @@ export class ActionAgentUpdateAgentCompanies implements Action {
   }
 }
 
+// agent request lookupHistory
+export const ACTION_AGENT_REQUEST_LOOKUP_HISTORY = '[AGENT] (request) lookup-history';
+export class ActionAgentRequestLookupHistory implements Action {
+    readonly type = ACTION_AGENT_REQUEST_LOOKUP_HISTORY;
+    constructor() {}
+}
+
+export const ACTION_AGENT_UPDATE_LOOKUP_HISTORY = '[AGENT] (update) lookup-history';
+export class ActionAgentUpdateLookupHistory implements Action {
+    readonly type = ACTION_AGENT_UPDATE_LOOKUP_HISTORY;
+    constructor(public payload: any) {}
+}
+
 export type AgentActions =
   ActionAgentUpdateAgentID |
   ActionAgentUpdateName |
   ActionAgentUpdateAll |
+  ActionAgentUpdateLookupHistory |
   ActionAgentUpdateAgentCompanies;

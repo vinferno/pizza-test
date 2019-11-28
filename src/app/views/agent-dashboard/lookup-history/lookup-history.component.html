@@ -1,1 +1,4 @@
 <p>lookup-history works!</p>
+<div>
+  <div *ngFor="let member of (lookupHistory$ | async)">{{member.memberName}}</div>
+</div>

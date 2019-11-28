@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AgentService } from '../../services/agent.service';
 import { map, switchMap } from 'rxjs/operators';
-import { ACTION_AGENT_REQUEST_ENABLED_COMPANIES, ACTION_AGENT_SUCCESS_LOGIN } from '../actions/agent.actions';
+import {
+  ACTION_AGENT_REQUEST_ENABLED_COMPANIES,
+  ACTION_AGENT_REQUEST_LOOKUP_HISTORY,
+  ACTION_AGENT_SUCCESS_LOGIN, ActionAgentUpdateLookupHistory
+} from '../actions/agent.actions';
 
 @Injectable()
 export class AgentEffect {
@@ -32,6 +36,16 @@ export class AgentEffect {
         return this.agentService.agentRequestEnabledCompanies();
       }),
       switchMap(res => [
+      ])
+    );
+
+  // agent request lookupHistory
+  @Effect() lookupHistory = this.actions$.pipe(
+      ofType(ACTION_AGENT_REQUEST_LOOKUP_HISTORY),
+      map((action: any) => action.payload),
+      switchMap(payload => this.agentService.agentRequestLookupHistory()),
+      switchMap(res => [
+        new ActionAgentUpdateLookupHistory(res.matchingMembers)
       ])
     );
 
