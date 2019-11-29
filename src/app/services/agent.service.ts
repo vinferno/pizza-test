@@ -4,7 +4,8 @@ import { ActionApiRequestAgentEnabledCompanies } from '../store/actions/api.acti
 import { Store } from '@ngrx/store';
 import { ActionAgentUpdateAll } from '../store/actions/agent.actions';
 import { ApiService } from './api.service';
-import { ApiGetMemberSearchHistory, ResponseMemberSearchHistory } from './endpoints/request';
+import { ApiGetMemberSearchHistory } from './endpoints/request';
+import { ResponseMemberSearchHistory } from '../store/models/members';
 
 @Injectable({
   providedIn: 'root'

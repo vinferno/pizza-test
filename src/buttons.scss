@@ -1,0 +1,17 @@
+button {
+  background-color: #3b5998;
+  padding: 1em;
+  color: white;
+}
+
+button:not(:first-child) {
+  background-color: #3b5998;
+  padding: 1em;
+  margin-left: .1em;
+  color: white;
+}
+
+
+button.selected.selected {
+  background-color: lime ;
+}

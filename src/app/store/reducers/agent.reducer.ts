@@ -1,13 +1,14 @@
 import {
   ACTION_AGENT_UPDATE_AGENT_COMPANIES,
   ACTION_AGENT_UPDATE_AGENT_ID,
-  ACTION_AGENT_UPDATE_ALL, ACTION_AGENT_UPDATE_LOOKUP_HISTORY,
+  ACTION_AGENT_UPDATE_ALL,
+  ACTION_AGENT_UPDATE_LOOKUP_HISTORY,
   ACTION_AGENT_UPDATE_NAME,
   AgentActions,
-  AgentState,
-  defaultAgentState
 } from '../actions/agent.actions';
+import { AgentState } from '../models/agent';
 
+export const defaultAgentState = new AgentState();
 export function agentReducer(
   state: AgentState = defaultAgentState,
   action: AgentActions

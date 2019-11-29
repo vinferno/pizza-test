@@ -8,8 +8,8 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SessionService } from '../../services/session.service';
-import { ActionSessionFailGetOperating } from '../actions/session.actions';
-import { ActionSystemUpdateOperatingMode } from '../actions/system.actions';
+import { ActionSessionFailGetOperating, ActionSystemUpdateOperatingMode } from '../actions/system.actions';
+
 export interface ResponseOperating {
   operatingMode: string;
 }
@@ -41,7 +41,6 @@ export class SessionEffect {
     switchMap(payload => this.sessionService.requestAgentLogin(payload)),
     switchMap(res => [
         ...this.sessionService.requestAgentLoginSuccess(res),
-
     ])
   );
 }

@@ -6,9 +6,10 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { ActionSessionApiSuccessAgentLogin } from '../store/reducers/session.reducer';
-import { ActionRouterNavAgentLoginSuccess, ActionRouterRequestAgentLoginSuccess } from '../store/actions/router.actions';
-import { ActionAgentUpdateAll, AgentOnly } from '../store/actions/agent.actions';
+import { ActionRouterRequestAgentLoginSuccess } from '../store/actions/router.actions';
+import { ActionAgentUpdateAll } from '../store/actions/agent.actions';
 import { ApiAgentLogin, ApiGetOperatingMode } from './endpoints/request';
+import { AgentOnly } from '../store/models/agent';
 
 export class  ResponseAgentLogin {
   agent: AgentOnly;

@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
 
 @Injectable()
 export class FormService {

@@ -1,11 +1,14 @@
 <div class="page-padding">
   <ng-container *ngFor="let item of (clientManager$ | async).routes">
-    <button [routerLink]="item.routeValue" class="client-manager-button" [ngClass]="{selected: item.routeValue === (url$ | async).url }">{{ item.textForDisplay }}</button>
+    <button [routerLink]="item.routeValue" class="client-manager-button" [ngClass]="{selected: item.routeValue === (url$ | async).url }">{{item.textForDisplay}} </button>
   </ng-container>
+  <br>
+
   <h2>{{(contentHeader$| async).contentTitleMWP}}</h2>
   <p [innerHTML]="(contentHeader$ | async).text">
 
+
   </p>
+  <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>

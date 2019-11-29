@@ -4,8 +4,6 @@ import { of } from 'rxjs';
 import { ActionAgentUpdateName } from '../store/actions/agent.actions';
 import { ApiService } from './api.service';
 import { ApiGetClientManager } from './endpoints/request';
-import { RouterState } from '@ngrx/router-store';
-import { RouterStateUrl } from '../store/reducers';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +23,6 @@ export class RouterService {
     return of(null);
   }
   getClientManager(payload: any) {
-    console.log('getClientManager', payload);
     return this.api.request(new ApiGetClientManager(), payload.routerState);
   }
 }

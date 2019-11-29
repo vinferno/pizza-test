@@ -1,7 +1,7 @@
 // agent session
 import { createSelector } from '@ngrx/store';
 import { getSessionState, SessionState } from '../reducers/session.map';
-import { AgentState } from '../actions/agent.actions';
+import { AgentState } from '../models/agent';
 
 export const getAgentState = createSelector(
   getSessionState,

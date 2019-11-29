@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { ApiAuthCredentialsAgentService } from './endpoints/agent-login.endpoint';
-import { ApiContentHeader } from './endpoints/content-header.endpoint';
-import { EndpointsAgents } from './endpoints/agents.enpoints';
 import { environment } from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';

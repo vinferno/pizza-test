@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from './store/reducers';
+import { AppState } from './store/models/app.models';
 
 @Component({
   selector: 'vf-root',
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'action-pattern';
 
   constructor(
-    public store: Store<State>
+    public store: Store<AppState>
   ) {
 
   }

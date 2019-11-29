@@ -124,8 +124,6 @@ textarea:-ms-input-placeholder { color: #4b2354;}
 /*---------------------------------------------*/
 button {
   outline: none !important;
-  border: none;
-  background: transparent;
 }
 
 button:hover {
@@ -470,18 +468,9 @@ iframe {
   }
 }
 
-.client-manager-button {
-  background-color: #3b5998;
-  padding: 1em;
-  margin: 1em;
-  color: white;
-}
 
-
-.selected {
-  background-color: lime;
-}
 
 .page-padding  {
   padding: 1em;
 }
+@import 'buttons';

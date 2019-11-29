@@ -1,7 +1,7 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import { agentReducer } from './agent.reducer';
-import { AgentState } from '../actions/agent.actions';
 import { systemReducer, SystemState } from './system.reducer';
+import { AgentState } from '../models/agent';
 
 // session action map
 export interface SessionState {

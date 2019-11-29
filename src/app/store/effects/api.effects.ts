@@ -4,8 +4,9 @@ import { ACTION_API_REQUEST_AGENT_ENABLED_COMPANIES } from '../actions/api.actio
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { ApiService } from '../../services/api.service';
 import { map, switchMap } from 'rxjs/operators';
-import { ActionAgentUpdateAgentCompanies, EnabledCompanies } from '../actions/agent.actions';
+import { ActionAgentUpdateAgentCompanies } from '../actions/agent.actions';
 import { ApiGetAgentEnabledCompanies } from '../../services/endpoints/request';
+import { EnabledCompanies } from '../models/agent';
 
 @Injectable()
 export class ApiEffect {

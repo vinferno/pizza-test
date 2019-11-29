@@ -11,16 +11,16 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { State } from '../store/reducers';
 import { getAgentState } from '../store/selectors/agent.selectors';
 import { first, map } from 'rxjs/operators';
-import { ActionRouterNavAgentLoginSuccess, ActionRouterRequestAuthGuardFail } from '../store/actions/router.actions';
+import { ActionRouterRequestAuthGuardFail } from '../store/actions/router.actions';
+import { AppState } from '../store/models/app.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgentAuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<AppState>) {}
 
   private checkStoreAuthentication(): Observable<boolean> {
     return this.store.pipe(select(getAgentState)).pipe(

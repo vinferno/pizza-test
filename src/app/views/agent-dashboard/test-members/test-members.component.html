@@ -1,0 +1,7 @@
+<select [(ngModel)]="selectedValue" (ngModelChange)="testMemberSelection(selectedValue)">
+  <option [value]="null" ></option>
+  <ng-container *ngFor="let company of ( agent$ | async ).agentCompanies">
+    <option [ngValue]="company">{{company.companyName}}</option>
+  </ng-container>
+</select>
+change

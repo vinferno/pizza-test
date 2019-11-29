@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AgentDashboardRoutingModule } from './agent-dashboard-routing.module';
-import { AnotherComponent } from './another/another.component';
 import { LookupHistoryComponent } from './lookup-history/lookup-history.component';
+import { MemberLookupComponent } from './member-lookup/member-lookup.component';
+import { TestMembersComponent } from './test-members/test-members.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AnotherComponent, LookupHistoryComponent],
-  imports: [
+  declarations: [ LookupHistoryComponent, MemberLookupComponent, TestMembersComponent],
+  imports : [
     CommonModule,
-    AgentDashboardRoutingModule
+    AgentDashboardRoutingModule,
+    FormsModule
   ],
   providers: [],
 })
