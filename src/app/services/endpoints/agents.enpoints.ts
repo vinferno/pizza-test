@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ApiEndpoint } from '../api-endpoint';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiAgentEnabledCompanies extends ApiEndpoint {
+export class ApiAgentEnabledCompanies {
   public config = {
     route: '/agents/enabled-companies',
     headers: {

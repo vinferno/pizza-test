@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AgentAuthGuard } from './guards/agent-auth.guard';
-import { ContentHeaderResolver } from './resolvers/content-header';
+import { ContentHeaderResolver } from './resolvers/content-header.resolver';
 
 
 const routes: Routes = [

@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
-import { EndpointConfig } from './api-endpoint';
 
 export interface ResponseOperating {
   operatingMode: string;
@@ -50,6 +49,7 @@ export class ApiConfig {
   method: Methods;
   route: string;
   headers: headerProp;
+  responseType?: any;
 }
 
 @Injectable({
@@ -71,6 +71,8 @@ export class ApiService {
   ) { }
 
   request<T>(config: ApiConfig, payload?: any) {
+    console.log(config);
+    if (1 + 1 === 2 && config.responseType) { return of(new config.responseType) }
     switch (config.method ) {
       case 'put':
         return this.put(payload, config.route, config.headers);

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SplashComponent } from './view/splash/splash.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {SplashComponent} from './view/splash/splash.component';
 
 
 const routes: Routes = [

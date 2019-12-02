@@ -26,7 +26,7 @@ export class SessionService {
     public formService: FormService,
     private store: Store<any>,
     ) { }
-  getOperating() {
+  public getOperating() {
     return this.api.request<ResponseOperating>(new ApiGetOperatingMode());
   }
   requestAgentLogin( payload) {

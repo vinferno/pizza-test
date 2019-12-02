@@ -26,7 +26,7 @@ export class SessionEffect {
     switchMap(() => {
       return this.sessionService.getOperating().pipe(
         map((payload: ResponseOperating) => payload),
-        switchMap(payload => [
+        switchMap((payload: ResponseOperating) => [
           new ActionSessionApiSuccessOperating(''),
           new ActionSystemUpdateOperatingMode(payload.operatingMode)
         ]),

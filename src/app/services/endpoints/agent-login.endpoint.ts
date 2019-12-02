@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ApiEndpoint } from '../api-endpoint';
 
 
 
 @Injectable()
-export class ApiAuthCredentialsAgentService extends ApiEndpoint {
+export class ApiAuthCredentialsAgentService {
   public config = {
     route: '/auth/credentials/agent',
     headers: {

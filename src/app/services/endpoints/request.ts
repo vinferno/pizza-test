@@ -7,6 +7,8 @@ import {
   methodGet,
   methodPost
 } from '../api.service';
+import {systemModel} from "../../store/models/system.models";
+import {ClientManagerState} from "../../store/reducers/client-manager.reducer";
 
 export const request = '';
 
@@ -14,6 +16,7 @@ export class ApiGetOperatingMode implements ApiConfig {
   route = '/auth/operating';
   headers = headersNone;
   method = methodGet;
+  responseType = systemModel
 }
 
 export class ApiAgentLogin implements ApiConfig {
@@ -41,6 +44,7 @@ export class ApiGetClientManager implements ApiConfig {
   route = '/client-manager';
   headers = headersGetValidate;
   method = methodPost;
+  responseType = ClientManagerState;
 }
 
 // getMemberSearchHistory

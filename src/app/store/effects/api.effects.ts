@@ -6,7 +6,8 @@ import { ApiService } from '../../services/api.service';
 import { map, switchMap } from 'rxjs/operators';
 import { ActionAgentUpdateAgentCompanies } from '../actions/agent.actions';
 import { ApiGetAgentEnabledCompanies } from '../../services/endpoints/request';
-import { EnabledCompanies } from '../models/agent';
+import {AgentState, EnabledCompanies} from '../models/agent';
+import {ResponseMemberSearchHistory} from "../models/members";
 
 @Injectable()
 export class ApiEffect {
@@ -21,7 +22,7 @@ export class ApiEffect {
       switchMap(payload => {
         return this.apiService.request<EnabledCompanies>(new ApiGetAgentEnabledCompanies());
       }),
-      switchMap(res => [
+      switchMap((res: AgentState) => [
         new ActionAgentUpdateAgentCompanies(res.agentCompanies)
       ])
     );

@@ -8,6 +8,7 @@ import {
   ACTION_AGENT_REQUEST_LOOKUP_HISTORY,
   ACTION_AGENT_SUCCESS_LOGIN, ActionAgentUpdateLookupHistory
 } from '../actions/agent.actions';
+import {ResponseMemberSearchHistory} from "../models/members";
 
 @Injectable()
 export class AgentEffect {
@@ -44,7 +45,7 @@ export class AgentEffect {
       ofType(ACTION_AGENT_REQUEST_LOOKUP_HISTORY),
       map((action: any) => action.payload),
       switchMap(payload => this.agentService.agentRequestLookupHistory()),
-      switchMap(res => [
+      switchMap(( res: ResponseMemberSearchHistory) => [
         new ActionAgentUpdateLookupHistory(res.matchingMembers)
       ])
     );

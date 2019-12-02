@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ResponseOperating } from '../services/api.service';
-import { ContentService } from '../services/content.service';
-import { ResponseContentHeaders } from '../responses';
-import { map } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { ActionContentHeaderUpdateAll } from '../store/actions';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
+import {ContentService} from '../services/content.service';
+import {ResponseContentHeaders} from '../responses';
+import {map} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {ActionContentHeaderUpdateAll} from '../store/actions';
 
 @Injectable({ providedIn: 'root' })
 export class ContentHeaderResolver implements Resolve<ResponseContentHeaders> {

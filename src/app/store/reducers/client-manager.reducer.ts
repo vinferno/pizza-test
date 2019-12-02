@@ -2,12 +2,12 @@
 import { ACTION_CLIENT_MANAGER_UPDATE_FULL, ActionClientManagerUpdateFull } from '../actions/client-manager.actions';
 
 export class ClientManagerRoute {
-  textForDisplay: string;
-  routeValue: string;
+  textForDisplay: string = 'test string for display';
+  routeValue: string = 'test string route value';
 }
 export class ClientManagerState {
-  displayType: string = '';
-  routes: ClientManagerRoute[] = [];
+  displayType: string = 'test string for displayType';
+  routes: ClientManagerRoute[] = [new ClientManagerRoute()];
 }
 export const defaultClientManagerState = new ClientManagerState();
 export type ClientManagerActions = ActionClientManagerUpdateFull;
