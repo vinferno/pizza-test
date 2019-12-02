@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiRoute: 'http://localhost:7820',
-  artMode: false,
+  artMode: true,
 };
 
 /*

@@ -71,8 +71,8 @@ export class ApiService {
   ) { }
 
   request<T>(config: ApiConfig, payload?: any) {
-    console.log(config);
-    if (1 + 1 === 2 && config.responseType) { return of(new config.responseType) }
+    console.log(config)
+    if ( environment.artMode ) { return of(new config.responseType()); }
     switch (config.method ) {
       case 'put':
         return this.put(payload, config.route, config.headers);

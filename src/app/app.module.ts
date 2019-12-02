@@ -21,7 +21,7 @@ import { CoreModule } from './core/core.module';
 import { BindSelectDirective } from './directives/bind-select.directive';
 
 
-const {metaReducers} = fromReducers;
+const metaReducers = fromReducers.metaReducers;
 
 @NgModule({
   declarations: [
