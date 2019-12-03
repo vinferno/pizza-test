@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import {Observable, of} from 'rxjs';
@@ -49,7 +49,8 @@ export class ApiConfig {
   method: Methods;
   route: string;
   headers: headerProp;
-  responseType?: any;
+  responseType: any;
+  artModeResponse?: any;
 }
 
 @Injectable({
@@ -71,8 +72,14 @@ export class ApiService {
   ) { }
 
   request<T>(config: ApiConfig, payload?: any) {
-    console.log(config)
-    if ( environment.artMode ) { return of(new config.responseType()); }
+    console.log(config);
+    let artModeResponse = new config.responseType();
+    if ( environment.artMode ) {
+      if (config.artModeResponse) {
+        artModeResponse = config.artModeResponse;
+      }
+      return of(new HttpResponse({ status: 200, body: artModeResponse }).body);
+    }
     switch (config.method ) {
       case 'put':
         return this.put(payload, config.route, config.headers);

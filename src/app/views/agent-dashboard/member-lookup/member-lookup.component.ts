@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getAgentState } from '../../../store/selectors/agent.selectors';
-import { ActionAgentRequestEnabledCompanies } from '../../../store/actions/agent.actions';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AgentState } from '../../../store/models/agent';
+import { ActionAgentApiRequestAgentEnabledCompanies, ActionAgentRequestLookupHistory } from '../../../store/actions';
 
 @Component({
   selector: 'vf-member-lookup',
@@ -18,7 +18,7 @@ export class MemberLookupComponent implements OnInit {
 
   ngOnInit() {
     this.agent$ = this.store.select(getAgentState);
-    this.store.dispatch(new ActionAgentRequestEnabledCompanies(''));
+    this.store.dispatch(new ActionAgentApiRequestAgentEnabledCompanies(null));
   }
 
 }

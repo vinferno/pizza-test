@@ -14,5 +14,5 @@ export class LookupHistory {
   isVerified: boolean;
 }
 export class ResponseMemberSearchHistory {
-  matchingMembers: LookupHistory[];
+  matchingMembers: LookupHistory[] = [new LookupHistory()];
 }

@@ -1,14 +1,9 @@
-import {
-  ApiConfig,
-  headersBasicWithFingerprint,
-  headersGetTokenWithFingerprint,
-  headersGetValidate,
-  headersNone,
-  methodGet,
-  methodPost
-} from '../api.service';
-import {systemModel} from "../../store/models/system.models";
-import {ClientManagerState} from "../../store/reducers/client-manager.reducer";
+import { ApiConfig, headersGetTokenWithFingerprint, headersGetValidate, headersNone, methodGet, methodPost } from '../api.service';
+import { systemModel } from '../../store/models/system.models';
+import { ClientManagerState } from '../../store/reducers/client-manager.reducer';
+import { ResponseContentHeaders } from '../../responses';
+import { EnabledCompanies, ResponseAgentApiRequestAgentLogin } from '../../store/models/agent';
+import { ResponseMemberSearchHistory } from '../../store/models/members';
 
 export const request = '';
 
@@ -16,13 +11,14 @@ export class ApiGetOperatingMode implements ApiConfig {
   route = '/auth/operating';
   headers = headersNone;
   method = methodGet;
-  responseType = systemModel
+  responseType = systemModel;
 }
 
 export class ApiAgentLogin implements ApiConfig {
   route = '/auth/credentials/agent';
   headers = headersGetTokenWithFingerprint;
   method = methodPost;
+  responseType = ResponseAgentApiRequestAgentLogin;
 }
 
 // postContentHeader
@@ -30,6 +26,7 @@ export class ApiPostContentHeader implements ApiConfig {
   route = '/enrollment-dashboard/content-header';
   headers = headersGetValidate;
   method = methodPost;
+  responseType = ResponseContentHeaders;
 }
 
 // getAgentEnabledCompanies
@@ -37,6 +34,7 @@ export class ApiGetAgentEnabledCompanies implements ApiConfig {
   route = '/agents/enabled-companies';
   headers = headersGetValidate;
   method = methodGet;
+  responseType = EnabledCompanies;
 }
 
 // getClientManager
@@ -52,6 +50,7 @@ export class ApiGetMemberSearchHistory implements ApiConfig {
   route = '/agents/member-search-history';
   headers = headersGetValidate;
   method = methodGet;
+  responseType = ResponseMemberSearchHistory;
 }
 
 // getAgentTestMembers
@@ -59,4 +58,7 @@ export class ApiGetAgentTestMembers implements ApiConfig {
   route = '/members/test-members';
   headers = headersGetValidate;
   method = methodGet;
+  responseType = ResponseMemberSearchHistory;
 }
+
+

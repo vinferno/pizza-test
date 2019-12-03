@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ActionSessionApiRequestAgentLogin, ActionSessionApiRequestOperating } from '../../../store/reducers/session.reducer';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SystemState } from '../../../store/reducers/system.reducer';
 import { getSystemState } from '../../../store/selectors/system.selectors';
+import { ActionSystemApiRequestOperating } from '../../../store/actions/system.actions';
+import { ActionAgentApiRequestAgentLogin } from '../../../store/actions/agent.actions';
 
 @Component({
   selector: 'vf-products',
@@ -21,7 +22,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.system$ = this.store.select(getSystemState);
-    this.store.dispatch(new ActionSessionApiRequestOperating());
+    this.store.dispatch(new ActionSystemApiRequestOperating(null));
     this.loginForm = this.fb.group({
       username: ['hgs.vinson.fernandez'],
       password: ['password1'],
@@ -36,7 +37,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public login() {
-    this.store.dispatch(new ActionSessionApiRequestAgentLogin(this.loginForm.value));
+    this.store.dispatch(new ActionAgentApiRequestAgentLogin(this.loginForm.value));
   }
 
 }

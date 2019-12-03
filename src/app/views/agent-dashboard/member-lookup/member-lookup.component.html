@@ -1,11 +1,6 @@
-
-
-
-
-  <select name="" id="">
-    <ng-container *ngFor="let company of ( agent$ | async ).agentCompanies">
-      <option [value]="company">{{company.companyName}}</option>
-    </ng-container>
-
-  </select>
+<select name="" id="">
+  <ng-container *ngFor="let company of ( agent$ | async ).agentCompanies">
+    <option [value]="company">{{company.companyName}}</option>
+  </ng-container>
+</select>
 

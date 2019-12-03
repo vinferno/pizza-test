@@ -5,7 +5,7 @@ import {ContentService} from '../services/content.service';
 import {ResponseContentHeaders} from '../responses';
 import {map} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
-import {ActionContentHeaderUpdateAll} from '../store/actions';
+import { ActionContentHeaderApiRequestClientManager, ActionContentHeaderApiRequestClientManagerSuccess } from '../store/actions';
 
 @Injectable({ providedIn: 'root' })
 export class ContentHeaderResolver implements Resolve<ResponseContentHeaders> {
@@ -18,9 +18,10 @@ export class ContentHeaderResolver implements Resolve<ResponseContentHeaders> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any>|Promise<any>|any {
+    this.store.dispatch(new ActionContentHeaderApiRequestClientManager(null));
     return this.contentService.getContentHeader().pipe(
       map( res => {
-        this.store.dispatch( new ActionContentHeaderUpdateAll(res));
+        this.store.dispatch( new ActionContentHeaderApiRequestClientManagerSuccess(res));
         return res; })
     );
   }

@@ -5,8 +5,8 @@ export class EnabledCompanies {
   companyName: string;
 }
 export class AgentOnly {
-  agentID: number = null;
-  name: string = null;
+  agentID: number = 1;
+  name: string = '';
   canCreateMembers: boolean = null;
   canAccessCRM: boolean = null;
   mustResetPassword: boolean = null;
@@ -19,5 +19,9 @@ export class AgentOnly {
   lookupHistory: LookupHistory[] = [];
 }
 export class AgentState extends AgentOnly {
-  permissions: string[] = null;
+  permissions: string[] = [];
+}
+export class  ResponseAgentApiRequestAgentLogin {
+  agent: AgentOnly = new AgentOnly();
+  permissions: string[] = [];
 }

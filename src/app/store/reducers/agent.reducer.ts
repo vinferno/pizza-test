@@ -1,7 +1,7 @@
 import {
-  ACTION_AGENT_UPDATE_AGENT_COMPANIES,
+  ACTION_AGENT_API_REQUEST_AGENT_ENABLED_COMPANIES_SUCCESS,
+  ACTION_AGENT_API_REQUEST_AGENT_LOGIN_SUCCESS,
   ACTION_AGENT_UPDATE_AGENT_ID,
-  ACTION_AGENT_UPDATE_ALL,
   ACTION_AGENT_UPDATE_LOOKUP_HISTORY,
   ACTION_AGENT_UPDATE_NAME,
   AgentActions,
@@ -14,13 +14,13 @@ export function agentReducer(
   action: AgentActions
 ) {
   switch ( action.type ) {
-    case ACTION_AGENT_UPDATE_ALL:
+    case ACTION_AGENT_API_REQUEST_AGENT_LOGIN_SUCCESS:
       return ({...state, ...{ ...action.payload } });
     case ACTION_AGENT_UPDATE_AGENT_ID:
       return ({...state, ...{ agentID: action.payload } });
     case ACTION_AGENT_UPDATE_NAME:
       return ({...state, ...{ name: action.payload } });
-      case ACTION_AGENT_UPDATE_AGENT_COMPANIES:
+      case ACTION_AGENT_API_REQUEST_AGENT_ENABLED_COMPANIES_SUCCESS:
         return ({...state, ...{ agentCompanies: action.payload } });
     case ACTION_AGENT_UPDATE_LOOKUP_HISTORY:
       return ({...state, ...{ lookupHistory: action.payload } });

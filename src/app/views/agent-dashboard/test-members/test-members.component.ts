@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActionAgentRequestEnabledCompanies } from '../../../store/actions/agent.actions';
 import { Store } from '@ngrx/store';
 import { getAgentState } from '../../../store/selectors/agent.selectors';
 import { AgentState } from '../../../store/models/agent';
+import { ActionAgentRequestTestMembers } from '../../../store/actions';
 
 @Component({
   selector: 'vf-test-members',
@@ -19,7 +19,7 @@ export class TestMembersComponent implements OnInit {
 
   ngOnInit() {
     this.agent$ = this.store.select(getAgentState);
-    this.store.dispatch(new ActionAgentRequestEnabledCompanies(''));
+    this.store.dispatch(new ActionAgentRequestTestMembers(''));
   }
   testMemberSelection(event) {
 

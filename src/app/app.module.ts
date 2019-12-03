@@ -13,9 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from '@angu
 import { RouterState, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import * as fromReducers from './store/reducers';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ApiAuthCredentialsAgentService } from './services/endpoints/agent-login.endpoint';
 import { FormService } from './services/form.service';
-import { ApiContentHeader } from './services/endpoints/content-header.endpoint';
 import { AuthInterceptor } from './services/endpoints/api-interceptor.service';
 import { CoreModule } from './core/core.module';
 import { BindSelectDirective } from './directives/bind-select.directive';
@@ -50,8 +48,6 @@ const metaReducers = fromReducers.metaReducers;
     }),
   ],
   providers: [{provide: RouterStateSerializer, useClass: fromReducers.CustomSerializer},
-    ApiAuthCredentialsAgentService,
-    ApiContentHeader,
     FormService,
     {
       provide : HTTP_INTERCEPTORS,
