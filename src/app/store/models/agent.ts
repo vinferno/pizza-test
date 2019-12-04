@@ -1,11 +1,16 @@
 import { LookupHistory } from './members';
+import { ResponseAgentApiRequestTestMembers } from '../../services/endpoints/responses';
 export class EnabledCompanies {
   companyID: number;
   code: string;
   companyName: string;
 }
-export class AgentOnly {
-  agentID: number = 1;
+export class AgentEnabledCompanies {
+  agentCompanies: EnabledCompanies[] = [];
+}
+
+export class AgentOnly extends AgentEnabledCompanies {
+  agentID: number;
   name: string = '';
   canCreateMembers: boolean = null;
   canAccessCRM: boolean = null;
@@ -15,8 +20,8 @@ export class AgentOnly {
   brokerImagePath: string = null;
   hasAccessToAllBrokers: boolean = null;
   brokerID: number = null;
-  agentCompanies: EnabledCompanies[] = [];
   lookupHistory: LookupHistory[] = [];
+  testMembers: ResponseAgentApiRequestTestMembers;
 }
 export class AgentState extends AgentOnly {
   permissions: string[] = [];

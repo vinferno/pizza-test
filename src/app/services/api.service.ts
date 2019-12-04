@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import {Observable, of} from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
+import { ArtModeService } from './art-mode.service';
 
 export interface ResponseOperating {
   operatingMode: string;
@@ -69,14 +70,14 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     public store: Store<any>,
+    public artModeService: ArtModeService,
   ) { }
 
   request<T>(config: ApiConfig, payload?: any) {
-    console.log(config);
     let artModeResponse = new config.responseType();
     if ( environment.artMode ) {
-      if (config.artModeResponse) {
-        artModeResponse = config.artModeResponse;
+      if (config.responseType) {
+        artModeResponse = this.artModeService.getResponse(config.responseType);
       }
       return of(new HttpResponse({ status: 200, body: artModeResponse }).body);
     }

@@ -14,7 +14,6 @@ export class SystemService {
   ) {
   }
   public systemApiRequestOperating(payload) {
-    console.log('apiRequest operating');
     return this.api.request<ResponseOperating>(new ApiGetOperatingMode());
   }
 }

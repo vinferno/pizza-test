@@ -1,4 +1,4 @@
 
-export class systemModel {
-  operatingMode : string = 'Art Mode'
+export class SystemModel {
+  operatingMode: string = '';
 }

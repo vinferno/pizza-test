@@ -5,14 +5,15 @@ import { AgentService } from '../../services/agent.service';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   ACTION_AGENT_API_REQUEST_AGENT_ENABLED_COMPANIES,
-  ACTION_AGENT_API_REQUEST_AGENT_LOGIN,
+  ACTION_AGENT_API_REQUEST_AGENT_LOGIN, ACTION_AGENT_API_REQUEST_TEST_MEMBERS,
   ACTION_AGENT_REQUEST_LOOKUP_HISTORY, ActionAgentApiRequestAgentEnabledCompaniesFail, ActionAgentApiRequestAgentEnabledCompaniesSuccess,
-  ActionAgentApiRequestAgentLoginFail,
+  ActionAgentApiRequestAgentLoginFail, ActionAgentApiRequestTestMembersFail, ActionAgentApiRequestTestMembersSuccess,
   ActionAgentUpdateLookupHistory
 } from '../actions/agent.actions';
 import { ResponseMemberSearchHistory } from '../models/members';
 import { of } from 'rxjs';
 import { AgentOnly, EnabledCompanies, ResponseAgentApiRequestAgentLogin } from '../models/agent';
+import { ResponseAgentApiRequestTestMembers } from '../../services/endpoints/responses';
 
 @Injectable()
 export class AgentEffect {
@@ -32,7 +33,6 @@ export class AgentEffect {
             ...this.agentService.requestAgentLoginSuccess(res),
           ]),
           catchError((error) => {
-            console.log('ERROR', error);
             return of(new ActionAgentApiRequestAgentLoginFail(error));
             }
             )
@@ -63,6 +63,21 @@ export class AgentEffect {
       switchMap(( res: ResponseMemberSearchHistory) => [
         new ActionAgentUpdateLookupHistory(res.matchingMembers)
       ])
+    );
+
+  // agent apiRequest testMembers
+  @Effect() testMembers = this.actions$.pipe(
+       ofType(ACTION_AGENT_API_REQUEST_TEST_MEMBERS),
+       map((action: any) => action.payload),
+      switchMap((payload) => {
+        return this.agentService.agentApiRequestTestMembers(payload).pipe(
+          map((res: ResponseAgentApiRequestTestMembers) => res),
+          switchMap((res: ResponseAgentApiRequestTestMembers) => [
+            new ActionAgentApiRequestTestMembersSuccess(res),
+          ]),
+          catchError((error) => of(new ActionAgentApiRequestTestMembersFail(error)))
+        );
+      })
     );
 
 }

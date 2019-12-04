@@ -13,9 +13,15 @@ export function formsReducer(
   switch ( action.type ) {
     case ACTION_FORMS_UPDATE_FIELD:
       const tempUpdateField = JSON.parse(JSON.stringify({...state.list}));
+      const fields = action.payload.field.split('.');
+      console.log('tempField', tempUpdateField);
       if (state && state.list) {
         if (tempUpdateField[action.payload.nameOfForm]) {
-          tempUpdateField[action.payload.nameOfForm].value[action.payload.field] = action.payload.value;
+          if (fields.length > 1) {
+            tempUpdateField[action.payload.nameOfForm].value[fields[0]][fields[1]] = action.payload.value;
+          } else {
+            tempUpdateField[action.payload.nameOfForm].value[action.payload.field] = action.payload.value;
+          }
         } else {
           return ({...state});
         }

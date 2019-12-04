@@ -8,7 +8,6 @@ const routes: Routes = [
   {path: '', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)},
   {path: 'counselor', loadChildren: () => import('./views/agent-dashboard/agent-dashboard.module').then(m => m.AgentDashboardModule),
   canActivate: [AgentAuthGuard],
-    resolve: [ContentHeaderResolver]
   },
 ];
 

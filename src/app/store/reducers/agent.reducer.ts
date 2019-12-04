@@ -1,6 +1,6 @@
 import {
   ACTION_AGENT_API_REQUEST_AGENT_ENABLED_COMPANIES_SUCCESS,
-  ACTION_AGENT_API_REQUEST_AGENT_LOGIN_SUCCESS,
+  ACTION_AGENT_API_REQUEST_AGENT_LOGIN_SUCCESS, ACTION_AGENT_API_REQUEST_TEST_MEMBERS_SUCCESS,
   ACTION_AGENT_UPDATE_AGENT_ID,
   ACTION_AGENT_UPDATE_LOOKUP_HISTORY,
   ACTION_AGENT_UPDATE_NAME,
@@ -24,6 +24,8 @@ export function agentReducer(
         return ({...state, ...{ agentCompanies: action.payload } });
     case ACTION_AGENT_UPDATE_LOOKUP_HISTORY:
       return ({...state, ...{ lookupHistory: action.payload } });
+    case ACTION_AGENT_API_REQUEST_TEST_MEMBERS_SUCCESS:
+      return ({...state, ...{ testMembers: action.payload } });
 // agent reducer
     default:
       return state;

@@ -35,6 +35,24 @@ export class ActionAgentApiRequestAgentEnabledCompaniesSuccess implements Action
   constructor(public payload: any) {}
 }
 
+// agent apiRequest testMembers
+export const ACTION_AGENT_API_REQUEST_TEST_MEMBERS = '[AGENT] (api-request) test-members';
+export class ActionAgentApiRequestTestMembers implements Action {
+    readonly type = ACTION_AGENT_API_REQUEST_TEST_MEMBERS;
+    constructor(public payload: any) {}
+}
+export const ACTION_AGENT_API_REQUEST_TEST_MEMBERS_FAIL = '[AGENT] (api-request) test-members-fail';
+export class ActionAgentApiRequestTestMembersFail implements Action {
+    readonly type = ACTION_AGENT_API_REQUEST_TEST_MEMBERS_FAIL;
+    constructor(public payload: any) {}
+}
+export const ACTION_AGENT_API_REQUEST_TEST_MEMBERS_SUCCESS = '[AGENT] (api-request) test-members-success';
+export class ActionAgentApiRequestTestMembersSuccess implements Action {
+    readonly type = ACTION_AGENT_API_REQUEST_TEST_MEMBERS_SUCCESS;
+    constructor(public payload: any) {}
+}
+
+
 export const ACTION_AGENT_UPDATE_NAME = '[AGENT] (update) name';
 export class ActionAgentUpdateName implements Action {
   readonly type = ACTION_AGENT_UPDATE_NAME;
@@ -46,13 +64,6 @@ export const ACTION_AGENT_REQUEST_LOOKUP_HISTORY = '[AGENT] (request) lookup-his
 export class ActionAgentRequestLookupHistory implements Action {
     readonly type = ACTION_AGENT_REQUEST_LOOKUP_HISTORY;
     constructor() {}
-}
-
-// agent request testMembers
-export const ACTION_AGENT_REQUEST_TEST_MEMBERS = '[AGENT] (request) test-members';
-export class ActionAgentRequestTestMembers implements Action {
-    readonly type = ACTION_AGENT_REQUEST_TEST_MEMBERS;
-    constructor(public payload: any) {}
 }
 
 // NON API REQUEST ACTIONS
@@ -75,11 +86,13 @@ export class ActionAgentUpdateAgentID implements Action {
 }
 
 
+
+
 export type AgentActions =
   ActionAgentUpdateAgentID |
   ActionAgentUpdateName |
   ActionAgentUpdateAll |
   ActionAgentUpdateLookupHistory |
-  ActionAgentRequestTestMembers |
   ActionAgentApiRequestAgentLoginSuccess |
+  ActionAgentApiRequestTestMembersSuccess |
   ActionAgentApiRequestAgentEnabledCompaniesSuccess;

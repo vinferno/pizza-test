@@ -4,4 +4,10 @@
     <option [ngValue]="company">{{company.companyName}}</option>
   </ng-container>
 </select>
-change
+
+<div>
+  <div *ngFor="let member of ( agent$ | async )?.testMembers?.matchingMembers">
+    <button>SELECT</button> {{member.memberName}}
+  </div>
+</div>
+

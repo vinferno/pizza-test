@@ -12,7 +12,7 @@ export class SplashComponent implements OnInit {
   constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.store.dispatch(new ActionFormsInitForm({nameOfForm: 'agentLogin' }));
+    this.store.dispatch(new ActionFormsInitForm({nameOfForm: 'AgentLoginForm' }));
   }
 
 }

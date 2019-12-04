@@ -5,6 +5,7 @@ import { LookupHistoryComponent } from './lookup-history/lookup-history.componen
 import { CommonModule } from '@angular/common';
 import { MemberLookupComponent } from './member-lookup/member-lookup.component';
 import { TestMembersComponent } from './test-members/test-members.component';
+import { ContentHeaderResolver } from '../../resolvers/content-header.resolver';
 
 
 const routes: Routes = [
@@ -13,9 +14,9 @@ const routes: Routes = [
     path: '',
     component: AgentDashboardComponent,
     children: [
-      {path: 'member-lookup', component: MemberLookupComponent},
-      {path: 'lookup-history', component: LookupHistoryComponent},
-      {path: 'test-members', component: TestMembersComponent},
+      {path: 'member-lookup', component: MemberLookupComponent, resolve: [ContentHeaderResolver]},
+      {path: 'lookup-history', component: LookupHistoryComponent, resolve: [ContentHeaderResolver]},
+      {path: 'test-members', component: TestMembersComponent, resolve: [ContentHeaderResolver]},
       {path: '**', redirectTo: 'member-lookup'}
     ]
   },

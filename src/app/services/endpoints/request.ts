@@ -1,9 +1,10 @@
 import { ApiConfig, headersGetTokenWithFingerprint, headersGetValidate, headersNone, methodGet, methodPost } from '../api.service';
-import { systemModel } from '../../store/models/system.models';
+import { SystemModel } from '../../store/models/system.models';
 import { ClientManagerState } from '../../store/reducers/client-manager.reducer';
 import { ResponseContentHeaders } from '../../responses';
-import { EnabledCompanies, ResponseAgentApiRequestAgentLogin } from '../../store/models/agent';
+import { AgentEnabledCompanies, EnabledCompanies, ResponseAgentApiRequestAgentLogin } from '../../store/models/agent';
 import { ResponseMemberSearchHistory } from '../../store/models/members';
+import { ResponseAgentApiRequestTestMembers } from './responses';
 
 export const request = '';
 
@@ -11,7 +12,7 @@ export class ApiGetOperatingMode implements ApiConfig {
   route = '/auth/operating';
   headers = headersNone;
   method = methodGet;
-  responseType = systemModel;
+  responseType = SystemModel;
 }
 
 export class ApiAgentLogin implements ApiConfig {
@@ -34,7 +35,7 @@ export class ApiGetAgentEnabledCompanies implements ApiConfig {
   route = '/agents/enabled-companies';
   headers = headersGetValidate;
   method = methodGet;
-  responseType = EnabledCompanies;
+  responseType = AgentEnabledCompanies;
 }
 
 // getClientManager
@@ -57,8 +58,8 @@ export class ApiGetMemberSearchHistory implements ApiConfig {
 export class ApiGetAgentTestMembers implements ApiConfig {
   route = '/members/test-members';
   headers = headersGetValidate;
-  method = methodGet;
-  responseType = ResponseMemberSearchHistory;
+  method = methodPost;
+  responseType = ResponseAgentApiRequestTestMembers;
 }
 
 
