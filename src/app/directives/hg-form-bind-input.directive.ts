@@ -7,7 +7,7 @@ interface BindInput {
   field: string;
 }
 @Directive({
-  selector: '[vfHgFormBindInput]'
+  selector: '[hgFormBindInput]'
 })
 export class HgFormBindInputDirective implements OnInit {
   @Input() vfHgFormBindInput: BindInput;
@@ -26,6 +26,4 @@ export class HgFormBindInputDirective implements OnInit {
         value }));
     });
   }
-
-
 }

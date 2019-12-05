@@ -53,6 +53,37 @@ export class ActionAgentApiRequestTestMembersSuccess implements Action {
 }
 
 
+// (nameSpace)   (type)   (method)    (action)
+// agent  apiRequest post  getMemberSpecification
+export const ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION = '[AGENT] (api-request) get-member-specification';
+export class ActionAgentApiRequestGetMemberSpecification implements Action {
+    readonly type = ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION;
+    constructor(public payload: any) {}
+}
+export const ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION_FAIL = '[AGENT] (api-request) get-member-specification-fail';
+export class ActionAgentApiRequestGetMemberSpecificationFail implements Action {
+    readonly type = ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION_FAIL;
+    constructor(public payload: any) {}
+}
+export const ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION_SUCCESS = '[AGENT] (api-request) get-member-specification-success';
+export class ActionAgentApiRequestGetMemberSpecificationSuccess implements Action {
+    readonly type = ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION_SUCCESS;
+    constructor(public payload: any) {}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const ACTION_AGENT_UPDATE_NAME = '[AGENT] (update) name';
 export class ActionAgentUpdateName implements Action {
   readonly type = ACTION_AGENT_UPDATE_NAME;

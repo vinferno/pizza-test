@@ -31,3 +31,7 @@ export class ResponseAgentApiRequestTestMembers {
 
   ];
 }
+
+export class ResponseAgentApiRequestGetMemberSpecification {
+  property: any;
+}

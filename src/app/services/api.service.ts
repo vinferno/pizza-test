@@ -10,7 +10,7 @@ export interface ResponseOperating {
   operatingMode: string;
 }
 
-export const headersGetValidate = 'getValidateHeaders';
+export const headersValidated = 'getValidateHeaders';
 export const headersGetToken = 'getTokenHeaders';
 export const headersGetTokenWithFingerprint = 'getTokenHeadersWithFingerprint';
 export const headersBasic = 'basic';
@@ -158,6 +158,7 @@ export class ApiService {
     }
 
     if (headerType === 'getValidateHeaders') {
+      console.log('getValidateHeaders');
       headers = headers.set('X-Auth-Fingerprint', this.session.fingerprint);
     }
 

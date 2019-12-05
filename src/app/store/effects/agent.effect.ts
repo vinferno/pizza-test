@@ -5,15 +5,22 @@ import { AgentService } from '../../services/agent.service';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   ACTION_AGENT_API_REQUEST_AGENT_ENABLED_COMPANIES,
-  ACTION_AGENT_API_REQUEST_AGENT_LOGIN, ACTION_AGENT_API_REQUEST_TEST_MEMBERS,
-  ACTION_AGENT_REQUEST_LOOKUP_HISTORY, ActionAgentApiRequestAgentEnabledCompaniesFail, ActionAgentApiRequestAgentEnabledCompaniesSuccess,
-  ActionAgentApiRequestAgentLoginFail, ActionAgentApiRequestTestMembersFail, ActionAgentApiRequestTestMembersSuccess,
-  ActionAgentUpdateLookupHistory
+  ACTION_AGENT_API_REQUEST_AGENT_LOGIN,
+  ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION,
+  ACTION_AGENT_API_REQUEST_TEST_MEMBERS,
+  ACTION_AGENT_REQUEST_LOOKUP_HISTORY,
+  ActionAgentApiRequestAgentEnabledCompaniesFail,
+  ActionAgentApiRequestAgentEnabledCompaniesSuccess,
+  ActionAgentApiRequestAgentLoginFail, ActionAgentApiRequestGetMemberSpecificationFail,
+  ActionAgentApiRequestGetMemberSpecificationSuccess,
+  ActionAgentApiRequestTestMembersFail,
+  ActionAgentApiRequestTestMembersSuccess,
+  ActionAgentUpdateLookupHistory,
 } from '../actions/agent.actions';
 import { ResponseMemberSearchHistory } from '../models/members';
 import { of } from 'rxjs';
 import { AgentOnly, EnabledCompanies, ResponseAgentApiRequestAgentLogin } from '../models/agent';
-import { ResponseAgentApiRequestTestMembers } from '../../services/endpoints/responses';
+import { ResponseAgentApiRequestGetMemberSpecification, ResponseAgentApiRequestTestMembers } from '../../services/endpoints/responses';
 
 @Injectable()
 export class AgentEffect {
@@ -80,4 +87,19 @@ export class AgentEffect {
       })
     );
 
+  // EFFECT LISTENER
+// agent apiRequest getMemberSpecification
+  @Effect() getMemberSpecification = this.actions$.pipe(
+    ofType(ACTION_AGENT_API_REQUEST_GET_MEMBER_SPECIFICATION),
+    map((action: any) => action.payload),
+    switchMap((payload) => {
+      return this.agentService.agentApiRequestGetMemberSpecification(payload).pipe(
+        map((res: ResponseAgentApiRequestGetMemberSpecification) => res),
+        switchMap((res: ResponseAgentApiRequestGetMemberSpecification) => [
+          new ActionAgentApiRequestGetMemberSpecificationSuccess(res),
+        ]),
+        catchError((error) => of(new ActionAgentApiRequestGetMemberSpecificationFail(error)))
+      );
+    })
+  );
 }

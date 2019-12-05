@@ -6,4 +6,3 @@ export class ActionClientManagerUpdateFull implements Action {
     readonly type = ACTION_CLIENT_MANAGER_UPDATE_FULL;
     constructor(public payload: any) {}
 }
-

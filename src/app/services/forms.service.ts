@@ -94,7 +94,7 @@ export class FormsService {
         errors = {...errors, ...secondErrors};
       }
     });
-    console.log('errors', errors)
+    console.log('errors', errors);
     return errors;
   }
 

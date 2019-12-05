@@ -1,4 +1,4 @@
-import { ApiConfig, headersGetTokenWithFingerprint, headersGetValidate, headersNone, methodGet, methodPost } from '../api.service';
+import { ApiConfig, headersGetTokenWithFingerprint, headersValidated, headersNone, methodGet, methodPost } from '../api.service';
 import { SystemModel } from '../../store/models/system.models';
 import { ClientManagerState } from '../../store/reducers/client-manager.reducer';
 import { ResponseContentHeaders } from '../../responses';
@@ -25,7 +25,7 @@ export class ApiAgentLogin implements ApiConfig {
 // postContentHeader
 export class ApiPostContentHeader implements ApiConfig {
   route = '/enrollment-dashboard/content-header';
-  headers = headersGetValidate;
+  headers = headersValidated;
   method = methodPost;
   responseType = ResponseContentHeaders;
 }
@@ -33,7 +33,7 @@ export class ApiPostContentHeader implements ApiConfig {
 // getAgentEnabledCompanies
 export class ApiGetAgentEnabledCompanies implements ApiConfig {
   route = '/agents/enabled-companies';
-  headers = headersGetValidate;
+  headers = headersValidated;
   method = methodGet;
   responseType = AgentEnabledCompanies;
 }
@@ -41,7 +41,7 @@ export class ApiGetAgentEnabledCompanies implements ApiConfig {
 // getClientManager
 export class ApiGetClientManager implements ApiConfig {
   route = '/client-manager';
-  headers = headersGetValidate;
+  headers = headersValidated;
   method = methodPost;
   responseType = ClientManagerState;
 }
@@ -49,7 +49,7 @@ export class ApiGetClientManager implements ApiConfig {
 // getMemberSearchHistory
 export class ApiGetMemberSearchHistory implements ApiConfig {
   route = '/agents/member-search-history';
-  headers = headersGetValidate;
+  headers = headersValidated;
   method = methodGet;
   responseType = ResponseMemberSearchHistory;
 }
@@ -57,7 +57,7 @@ export class ApiGetMemberSearchHistory implements ApiConfig {
 // getAgentTestMembers
 export class ApiGetAgentTestMembers implements ApiConfig {
   route = '/members/test-members';
-  headers = headersGetValidate;
+  headers = headersValidated;
   method = methodPost;
   responseType = ResponseAgentApiRequestTestMembers;
 }

@@ -54,4 +54,7 @@ export class AgentService {
     console.log('payload', payload);
     return this.api.request(new ApiGetAgentTestMembers(), newPayload);
   }
+  public agentApiRequestGetMemberSpecification(payload) {
+    return this.api.request(new ApiGetAgentTestMembers(), payload);
+  }
 }
