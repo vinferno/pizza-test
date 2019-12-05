@@ -10,7 +10,7 @@ interface BindInput {
   selector: '[hgFormBindInput]'
 })
 export class HgFormBindInputDirective implements OnInit {
-  @Input() vfHgFormBindInput: BindInput;
+  @Input() hgFormBindInput: BindInput;
   constructor(
     private eleRef: ElementRef,
     private store: Store<any>
@@ -21,8 +21,8 @@ export class HgFormBindInputDirective implements OnInit {
     this.eleRef.nativeElement.addEventListener('input', (event) => {
       const value = this.eleRef.nativeElement.value;
       this.store.dispatch(new ActionFormsRequestUpdateField({
-        nameOfForm: this.vfHgFormBindInput.name,
-        field: this.vfHgFormBindInput.field,
+        nameOfForm: this.hgFormBindInput.name,
+        field: this.hgFormBindInput.field,
         value }));
     });
   }

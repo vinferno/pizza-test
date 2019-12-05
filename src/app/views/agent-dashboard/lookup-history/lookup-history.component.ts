@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { LookupHistory } from '../../../store/models/members';
 
 @Component({
-  selector: 'vf-lookup-history',
+  selector: 'hg-lookup-history',
   templateUrl: './lookup-history.component.html',
   styleUrls: ['./lookup-history.component.scss']
 })

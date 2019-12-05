@@ -8,7 +8,7 @@ import { ActionSystemApiRequestOperating } from '../../../store/actions/system.a
 import { ActionAgentApiRequestAgentLogin } from '../../../store/actions/agent.actions';
 
 @Component({
-  selector: 'vf-products',
+  selector: 'hg-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

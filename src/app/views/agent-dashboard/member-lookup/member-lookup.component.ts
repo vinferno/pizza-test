@@ -6,7 +6,7 @@ import { AgentState } from '../../../store/models/agent';
 import { ActionAgentApiRequestAgentEnabledCompanies, ActionAgentRequestLookupHistory } from '../../../store/actions';
 
 @Component({
-  selector: 'vf-member-lookup',
+  selector: 'hg-member-lookup',
   templateUrl: './member-lookup.component.html',
   styleUrls: ['./member-lookup.component.scss']
 })

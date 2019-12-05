@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ActionFormsInitForm } from '../../../store/actions/forms.actions';
 
 @Component({
-  selector: 'vf-splash',
+  selector: 'hg-splash',
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss']
 })

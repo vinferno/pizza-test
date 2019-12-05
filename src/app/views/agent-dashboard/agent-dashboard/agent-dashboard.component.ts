@@ -8,7 +8,7 @@ import { getClientManager, getContentHeader } from '../../../store/selectors/con
 import { ResponseContentHeaders } from '../../../responses';
 
 @Component({
-  selector: 'vf-agent-dashboard',
+  selector: 'hg-agent-dashboard',
   templateUrl: './agent-dashboard.component.html',
   styleUrls: ['./agent-dashboard.component.scss']
 })

@@ -10,7 +10,7 @@ import {
 } from '../../../store/actions';
 
 @Component({
-  selector: 'vf-test-members',
+  selector: 'hg-test-members',
   templateUrl: './test-members.component.html',
   styleUrls: ['./test-members.component.scss']
 })

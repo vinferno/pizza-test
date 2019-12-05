@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './store/models/app.models';
 
 @Component({
-  selector: 'vf-root',
+  selector: 'hg-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -17,8 +17,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
-
   }
 }
