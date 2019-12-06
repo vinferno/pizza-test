@@ -7,6 +7,11 @@ import {
 
 export class SystemState {
   operatingMode: string;
+  version: string;
+  linkHome: string;
+  linkAbout: string;
+  linkAdministrators: string;
+  linkBrokers: string;
 }
 export const defaultSystemState = new SystemState();
 export type SystemActions = ActionSystemApiRequestOperatingSuccess;

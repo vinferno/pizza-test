@@ -9,13 +9,9 @@ import { AppState } from './store/models/app.models';
 })
 export class AppComponent implements OnInit {
   title = 'action-pattern';
-
   constructor(
     public store: Store<AppState>
-  ) {
-
-  }
-
+  ) {}
   ngOnInit(): void {
   }
 }
